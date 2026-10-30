@@ -82,7 +82,7 @@ Aprobada el 2026-10-30: GitHub Pages en `anevadog.github.io`, publicando con el 
 - [x] Eliminar la página interna `src/pages/muestra.astro`
 - [x] Configurar el hosting: workflow `.github/workflows/deploy.yml` (acciones oficiales de GitHub, Node desde `.nvmrc`, `npm run build`)
 - [x] Configurar `site` en `astro.config.mjs` (sin `base`), y añadir `og:url`, `og:image` con dimensiones y texto alternativo, Twitter `summary_large_image` y la URL canónica. La 404 lleva `noindex` y no tiene URL canónica
-- [x] Crear el repositorio remoto, primer `push` y activar Pages con «GitHub Actions» (propietario, P-6). Commit `88627b0`; el workflow terminó correctamente
+- [x] Crear el repositorio remoto, primer `push` y activar Pages con «GitHub Actions» (propietario, P-6). Commit `d26b3b9`; el workflow terminó correctamente
 - [x] Verificación en producción (2026-10-30, `https://anevadog.github.io/`):
   - El HTML publicado es idéntico al de `dist/` local; HTTP redirige a HTTPS
   - Una ruta inexistente devuelve 404 con la página propia y `noindex`; `/muestra` ya no existe

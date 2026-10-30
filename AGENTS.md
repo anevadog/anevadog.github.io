@@ -134,7 +134,7 @@ Scripts: `npm run dev`, `npm run build` (ejecuta `astro check` antes de compilar
 - **Accesibilidad**: HTML semántico (`header`, `nav`, `main`, `section` con encabezado, `footer`); un único `h1`; `alt` descriptivo en imágenes; enlaces externos con `rel="noopener noreferrer"`.
 - **Formato**: Prettier con la configuración por defecto salvo decisión contraria; `.editorconfig` para el editor.
 - **Espacios en texto con etiquetas en línea**: Prettier puede partir la línea entre una etiqueta (`<strong>`, `<span>`) y el texto que la sigue, y Astro elimina ese salto, de modo que las palabras quedan pegadas. Usa `{" "}` explícito, o pseudoelementos para prefijos decorativos (como `~/`). Tras cambiar textos, revisa el HTML de `dist/`.
-- **Commits**: Conventional Commits en español (`feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `chore:`). Propuesta, ver ADR-014.
+- **Commits**: Conventional Commits en español (`feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `chore:`). Propuesta, ver ADR-014. Sin líneas `Co-Authored-By` ni ninguna atribución al agente o a herramientas de IA (ver §9).
 
 ## 7. Sistema de diseño
 
@@ -202,6 +202,7 @@ Una tarea está terminada cuando:
 - Requiere consentimiento explícito para cada acción concreta: `add`, `commit`, `push`, `merge`, `rebase`, crear/renombrar/borrar ramas o tags, cambiar remotos.
 - Nunca sin autorización expresa: `reset --hard`, `clean -fd`, `checkout --`, `restore`, `branch -D`, `push --force`, `rm -rf`.
 - No hacer commits «para guardar cambios».
+- Los mensajes de commit y de PR no incluyen `Co-Authored-By` ni ninguna atribución al agente: el repositorio es público y solo debe figurar el propietario.
 - **El propietario ejecuta las operaciones Git que modifican el repositorio.** El agente le indica cuándo hacerlas y le da los comandos exactos: `git add` con los archivos concretos, `git commit -m` con el mensaje propuesto y cuándo hacer `git push`.
 
 ### Dependencias, sistema y servicios externos

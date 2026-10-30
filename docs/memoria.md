@@ -13,7 +13,7 @@ Estado actual y punto de continuación. Se actualiza al final de cada sesión.
   - Hero, «Sobre mí», Proyectos y CV en HTML.
   - Página 404 e imagen Open Graph.
   - Sistema de diseño B «Grafito esmeralda», tema claro/oscuro sin parpadeo y menú móvil accesible.
-- Git: rama `main` con commits hasta la Fase 7 (`88627b0`, documentación de la verificación en `0163419`), subida a `origin` (`github.com/anevadog/anevadog.github.io`, público). Cada `push` a `main` vuelve a desplegar. El propietario ejecuta `git add`, `commit` y `push`; el agente le indica cuándo y le da los comandos (`AGENTS.md` §9).
+- Git: rama `main` con commits hasta la Fase 7 (`d26b3b9`, documentación de la verificación en `8d08f5e`), subida a `origin` (`github.com/anevadog/anevadog.github.io`, público). Cada `push` a `main` vuelve a desplegar. El propietario ejecuta `git add`, `commit` y `push`; el agente le indica cuándo y le da los comandos (`AGENTS.md` §9).
 
 ## Último paso realizado
 
@@ -25,6 +25,7 @@ Fase 7 (despliegue), publicada con el contenido pendiente tal como está (aproba
 - Workflow `.github/workflows/deploy.yml` con acciones oficiales de GitHub (checkout v7, setup-node v7, configure-pages v6, upload-pages-artifact v5, deploy-pages v5).
 - `npm run build` y `format:check` correctos; metadatos revisados en `dist/`.
 - En producción: HTML idéntico al build local, 404 correcta, recursos 200, HTTP → HTTPS y Lighthouse 100 en móvil y escritorio.
+- Historial limpiado por el propietario: los 3 commits de la Fase 7 llevaban `Co-Authored-By: Claude` y GitHub mostraba a Claude como contribuidor. Se reescribieron con `git filter-branch` (solo los mensajes; el código no cambia) y se subieron con `--force-with-lease`. Nueva regla en `AGENTS.md` §6 y §9: ninguna atribución al agente en los commits.
 
 La Fase 6 (validación) está detallada en `docs/plan.md`.
 
