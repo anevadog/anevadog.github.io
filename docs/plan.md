@@ -40,15 +40,20 @@ Autorizada por el propietario el 2026-10-30.
 - [x] `Footer` con enlaces desde `src/data/profile.ts` (RF-08; enlaces pendientes de ADR-013)
 - [x] Favicon (`public/favicon.svg`); la imagen OG pasa a la Fase 4
 
-## Fase 4 — Secciones `[ ]`
+## Fase 4 — Secciones `[~]`
 
-- [ ] Sustituir el contenido de ejemplo de `src/data/profile.ts` (checklist de contenido)
-- [ ] Hero (RF-01)
-- [ ] Modelo de datos y sección de proyectos (RF-03, RF-04)
-- [ ] Sección de currículum según ADR-004 (RF-05, RF-06)
-- [ ] Página 404 (RF-09)
-- [ ] Sección «Sobre mí / Stack», si se aprueba (RF-10, ADR-013)
-- [ ] Imagen Open Graph `public/og-image.png` y etiquetas `og:image` (RNF-05)
+Implementada el 2026-10-30. Queda abierta hasta recibir el contenido pendiente (ver la checklist de contenido).
+
+- [x] Datos reales en `src/data/profile.ts`, `projects.ts` y `resume.ts`
+- [x] Hero (RF-01)
+- [x] Sección «Sobre mí» (RF-10, ADR-013)
+- [x] Modelo de datos y sección de proyectos (RF-03, RF-04). SoftHard A&L más dos tarjetas «en desarrollo»
+- [x] Sección de currículum en HTML según ADR-004 (RF-05). La descarga (RF-06) se activa al definir `resume.pdf`
+- [x] Página 404 (RF-09)
+- [x] Imagen Open Graph `public/og-image.png`. La etiqueta `og:image` se añade en la Fase 7
+- [ ] Capturas de SoftHard A&L en `src/assets/projects/` (campo `image` del proyecto)
+- [ ] Sustituir las tarjetas «en desarrollo» por los proyectos reales
+- [ ] Añadir el PDF del CV a `public/cv/` y definir `resume.pdf`
 
 ## Fase 5 — Pulido visual `[ ]`
 
@@ -71,16 +76,18 @@ Requiere autorización. Bloqueada por ADR-003.
 
 - [ ] Eliminar la página interna `src/pages/muestra.astro`
 - [ ] Configurar el hosting elegido
-- [ ] Configurar `site` (y `base` si aplica) en `astro.config.mjs`, y añadir `og:url` y la URL canónica
+- [ ] Configurar `site` (y `base` si aplica) en `astro.config.mjs`, y añadir `og:url`, `og:image` (con `public/og-image.png`) y la URL canónica
 - [ ] Verificación final en producción
 
 ## Checklist de contenido (lo aporta el propietario)
 
-- [ ] Nombre, perfil profesional y descripción breve del Hero
-- [ ] Enlaces: GitHub, LinkedIn, email u otros (ADR-013)
-- [ ] 3 proyectos: título, descripción, tecnologías, URL del repositorio, URL de la demo (si la hay) y captura
-- [ ] CV en PDF (versión pública, ADR-012)
-- [ ] Foto, si se incluye (ADR-013)
+- [x] Nombre, perfil profesional y descripción breve del Hero
+- [x] Enlaces: LinkedIn, GitHub y email (ADR-013)
+- [x] Contenido del CV (experiencia, competencias, idiomas), revisado el 2026-10-30
+- [x] Formación: CFGS Desarrollo de Aplicaciones Multiplataforma — CEAC · 2025–actualidad
+- [ ] 3 proyectos: 1 de 3 (SoftHard A&L, repositorio privado bajo petición). Faltan capturas de SoftHard y los otros dos proyectos (públicos cuando estén terminados)
+- [ ] CV en PDF (versión pública sin teléfono, ADR-012)
+- [ ] Foto: PENDIENTE (ADR-013)
 
 ## Riesgos
 

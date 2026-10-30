@@ -6,38 +6,41 @@ Estado actual y punto de continuación. Se actualiza al final de cada sesión.
 
 ## Estado actual
 
-- Fases 0, 1, 2 y 3 completadas.
-- Stack instalado: Astro 7.4.4, Tailwind CSS 4.3.3, TypeScript 6.0.3 (estricto), Prettier 3.9.10, `@astrojs/check`, y Geist / Geist Mono (`@fontsource-variable/*` 5.3.0).
-- Sistema de diseño B «Grafito esmeralda» en `src/styles/global.css` (ADR-011). Componentes base en `src/components/ui/`.
-- Layout: `BaseLayout` (SEO, precarga de fuente, tema sin parpadeo, enlace «Saltar al contenido»), `Header` (navegación, menú móvil, resaltado de sección), `ThemeToggle` y `Footer`.
-- `src/pages/index.astro` usa el layout con secciones provisionales (`#inicio`, `#proyectos`, `#cv`). `src/data/profile.ts` contiene datos de ejemplo marcados como PENDIENTE.
+- Fases 0 a 3 completadas. Fase 4 implementada, pero abierta a la espera de contenido del propietario.
+- Stack: Astro 7.4.4, Tailwind CSS 4.3.3, TypeScript 6.0.3 (estricto), Prettier 3.9.10, `@astrojs/check`, Geist / Geist Mono (`@fontsource-variable/*` 5.3.0).
+- Sistema de diseño B «Grafito esmeralda» (ADR-011). Layout, cabecera, menú móvil, tema y pie listos (Fase 3).
+- Página completa con datos reales:
+  - Hero, «Sobre mí», Proyectos (SoftHard A&L y dos tarjetas «en desarrollo») y CV en HTML.
+  - Página 404 e imagen Open Graph en `public/og-image.png`.
+  - Datos en `src/data/profile.ts`, `projects.ts` y `resume.ts`. El teléfono no se publica (ADR-012); solo cifras confirmadas (ADR-015).
 - Página interna `/muestra`; se elimina antes del despliegue.
-- Git: rama `main` con commits hasta la Fase 2 y sin remoto. El propietario ejecuta `git add`, `commit` y `push`; el agente le indica cuándo y le da los comandos (`AGENTS.md` §9).
+- Git: rama `main` con commits hasta la Fase 3 y sin remoto. El propietario ejecuta `git add`, `commit` y `push`; el agente le indica cuándo y le da los comandos (`AGENTS.md` §9).
 
 ## Último paso realizado
 
-Fase 3 validada:
+Fase 4 validada:
 
 - `npm run build` (con `astro check`) y `npm run format:check` sin errores.
-- Tema: sigue al sistema sin preferencia guardada, la elección se guarda y tiene prioridad, y el script está en línea en `<head>`.
-- Teclado: orden de tabulación correcto, foco visible y enlace «Saltar al contenido» funcional.
-- Menú móvil: se cierra con `Esc` (el foco vuelve al botón), al elegir un enlace y al pulsar fuera.
-- Resaltado de la sección visible al hacer scroll.
-- Sin scroll horizontal a 375 px ni a 1440 px.
-- La precarga apunta al mismo archivo de fuente que usa el CSS.
+- Navegador a 375, 768 y 1440 px, en ambos temas, sin scroll horizontal.
+- Enlaces externos con `noopener noreferrer`; «Solicitar acceso» abre un `mailto:` con asunto.
+- Un único `h1`. La página 404 funciona.
+- El teléfono no aparece en `dist/`, `src/` ni `public/`.
+- Contraste revisado sobre el brillo del Hero. En tema claro, la línea `whoami` usa `accent` (4,57:1 en el peor caso), porque `accent-2` bajaba a 4,16:1.
+- Corregidos los espacios que Prettier y Astro eliminaban junto a etiquetas en línea (convención añadida en `AGENTS.md` §6).
 
 ## Siguiente paso
 
-1. El propietario hace el commit de la Fase 3.
-2. Planificar la Fase 4 (secciones). Necesita el contenido del propietario (checklist en `docs/plan.md`) y las decisiones ADR-004, ADR-012 y ADR-013.
+1. El propietario hace el commit de la Fase 4.
+2. Pendiente del propietario: capturas de SoftHard A&L, los otros dos proyectos y el PDF del CV (sin teléfono). Cuando lleguen, se completa la Fase 4.
+3. Mientras tanto se puede planificar la Fase 5 (pulido visual y animaciones).
 
 ## Decisiones abiertas
 
 Detalle en `docs/decisiones.md`.
 
-- **Propuestas (aplicadas por defecto, pendientes de confirmar):** ADR-003, ADR-004, ADR-005, ADR-014.
-- **Pendientes:** ADR-012, ADR-013.
+- **Propuestas (aplicadas por defecto, pendientes de confirmar):** ADR-003, ADR-005, ADR-014.
+- **Pendientes:** foto (ADR-013).
 
 ## Bloqueos
 
-- Contenido del propietario (checklist de contenido en `docs/plan.md`). Ahora bloquea la Fase 4.
+- Ninguno para la Fase 5. El contenido pendiente solo bloquea el cierre de la Fase 4.

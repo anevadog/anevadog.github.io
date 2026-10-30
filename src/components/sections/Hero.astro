@@ -1,0 +1,57 @@
+---
+import Button from "../ui/Button.astro";
+import Icon from "../ui/Icon.astro";
+import SocialLinks from "../ui/SocialLinks.astro";
+import { profile } from "../../data/profile";
+---
+
+<section
+  id="inicio"
+  aria-labelledby="inicio-titulo"
+  class="relative isolate overflow-hidden"
+>
+  <!-- Fondo decorativo: rejilla con desvanecido radial y brillo de marca. -->
+  <div aria-hidden="true" class="absolute inset-0 -z-10">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] mask-[radial-gradient(ellipse_at_top,black,transparent_70%)] bg-size-[3rem_3rem]"></div>
+    <div class="absolute -top-48 left-1/2 size-160 -translate-x-1/2 rounded-full bg-accent opacity-10 blur-3xl"></div>
+  </div>
+
+  <div class="mx-auto flex min-h-[calc(100dvh-4rem)] max-w-6xl flex-col justify-center gap-6 px-4 py-20 sm:px-6">
+    <p class="font-mono text-sm text-accent dark:text-accent-2">
+      ~/{profile.handle} $ whoami
+    </p>
+
+    <h1
+      id="inicio-titulo"
+      class="text-[2.75rem] leading-[1.05] font-bold tracking-tighter sm:text-6xl lg:text-7xl"
+    >
+      {profile.firstName}{" "}
+      <span class="block bg-(image:--gradient-brand) bg-clip-text pb-1 text-transparent">
+        {profile.lastName}
+      </span>
+    </h1>
+
+    <div class="flex flex-col gap-2">
+      <p class="text-lg font-medium sm:text-xl">{profile.role}</p>
+      <p class="flex items-center gap-1.5 text-sm text-text-muted">
+        <Icon name="mapPin" class="size-4" />
+        {profile.location}
+      </p>
+    </div>
+
+    <p class="max-w-2xl text-lg text-pretty text-text-muted">
+      {profile.tagline}
+    </p>
+
+    <div class="flex flex-wrap items-center gap-3 pt-2">
+      <Button href="#proyectos">
+        Ver proyectos
+        <Icon name="arrowRight" class="size-4" />
+      </Button>
+      <Button variant="secondary" href="#cv">
+        Ver CV
+      </Button>
+      <SocialLinks />
+    </div>
+  </div>
+</section>

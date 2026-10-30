@@ -1,0 +1,26 @@
+---
+import { iconPaths, type IconName } from "./icons";
+
+interface Props {
+  name: IconName;
+  /** Clases de tamaño y color; por defecto `size-5`. */
+  class?: string;
+}
+
+const { name, class: className = "size-5" } = Astro.props;
+---
+
+<svg
+  aria-hidden="true"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class:list={["shrink-0", className]}
+>
+  {iconPaths[name].map((d) => (
+    <path d={d} />
+  ))}
+</svg>

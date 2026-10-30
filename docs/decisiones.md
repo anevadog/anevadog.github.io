@@ -54,11 +54,11 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 ## ADR-004 — CV en HTML + descarga en PDF
 
-**Estado:** Propuesta · **Fecha:** 2026-10-30
+**Estado:** Aceptada · **Fecha:** 2026-10-30
 
 **Contexto:** Chrome Android no muestra PDF dentro de un `iframe` y Safari iOS lo hace de forma limitada (R-03).
 
-**Decisión propuesta:** opción A. Sección de CV maquetada en HTML a partir de datos, más un botón de descarga del PDF.
+**Decisión:** opción A. Sección de CV maquetada en HTML a partir de datos, más un botón de descarga del PDF. El PDF todavía no existe (el propietario lo preparará con los proyectos pendientes de publicar): el botón solo se muestra cuando el archivo está definido en los datos del CV.
 
 **Alternativas:**
 
@@ -159,23 +159,25 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 ## ADR-012 — Datos personales publicados
 
-**Estado:** Pendiente
+**Estado:** Aceptada · **Fecha:** 2026-10-30
 
 **Contexto:** el CV y el sitio son públicos e indexables (R-01).
 
-**Recomendación:** no publicar dirección ni teléfono; email sí, mediante enlace `mailto:`; eliminar los metadatos del PDF. El original completo va en `privado/`, que está excluida de Git.
+**Decisión:**
 
-**A decidir por el propietario:** qué datos aparecen en la web y en el PDF público.
+- **Se publican:** nombre, ubicación a nivel de ciudad («Dos Hermanas (Sevilla)»), email mediante enlace `mailto:` y perfiles de LinkedIn y GitHub.
+- **No se publica:** el teléfono, ni en la web ni en el PDF público.
+- **PDF público:** se le eliminan los metadatos antes de publicarlo. El original completo va en `privado/`, que está excluida de Git.
 
 ## ADR-013 — Contenido adicional
 
-**Estado:** Pendiente
+**Estado:** Aceptada (salvo la foto) · **Fecha:** 2026-10-30
 
-**A decidir:**
+**Decisión:**
 
-- Si se incluye la sección «Sobre mí / Stack» (RF-10).
-- Si se incluye foto.
-- Qué enlaces de contacto y perfiles aparecen (RF-08).
+- Se incluye la sección «Sobre mí» (RF-10), centrada en la transición de soporte IT a desarrollo.
+- Enlaces de contacto y perfiles (RF-08): LinkedIn, GitHub y email.
+- Foto: **PENDIENTE**. Por ahora no se incluye.
 
 ## ADR-014 — Convención de commits
 
@@ -184,3 +186,11 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 **Decisión propuesta:** Conventional Commits en español (`feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `chore:`).
 
 **Consecuencias:** historial legible. Ningún commit se hace sin autorización (`AGENTS.md` §9).
+
+## ADR-015 — Cifras y hechos del CV
+
+**Estado:** Aceptada · **Fecha:** 2026-10-30
+
+**Decisión:** el portafolio y el CV solo incluyen cifras y hechos que el propietario confirma y puede defender en una entrevista. No se inventan datos de relleno.
+
+**Cifras confirmadas:** más de 50 clientes en SoftHard A&L (2020–2024); 609 tests unitarios y 106 de integración en la aplicación SoftHard A&L.

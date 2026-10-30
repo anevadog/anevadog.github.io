@@ -86,7 +86,9 @@ No se añaden dependencias fuera de esta tabla sin aprobación previa (ver §9).
 Sitio estático generado en tiempo de compilación. Sin servidor, base de datos ni variables de entorno.
 
 - **Página única** (`src/pages/index.astro`) compuesta por componentes de sección.
-- **Contenido como datos**: `src/data/profile.ts` (perfil, enlaces) y `src/data/projects.ts` (proyectos tipados). Los componentes no contienen texto de contenido.
+- **Contenido como datos**: `src/data/profile.ts` (perfil y enlaces), `src/data/projects.ts` (proyectos tipados) y `src/data/resume.ts` (CV). Los textos editoriales de cada sección (títulos, párrafos de «Sobre mí») viven en su componente de `src/components/sections/`. Solo se publican cifras confirmadas (ADR-015).
+- **Secciones** (`src/components/sections/`): `Hero`, `About`, `Projects` (+ `ProjectCard`) y `Resume`. Se componen en `src/pages/index.astro`. También existe `src/pages/404.astro`.
+- **Rutas de `public/`**: siempre con `publicPath()` de `src/utils/paths.ts`, para respetar `base` (ADR-003).
 - **Imágenes** de proyectos en `src/assets/projects/`, optimizadas con `astro:assets` (formatos modernos, dimensiones explícitas para evitar CLS).
 - **CV** público en `public/cv/`, servido tal cual para la descarga.
 - **Tema**: atributo `data-theme="light|dark"` en `<html>`. Un script en línea en `<head>` lo aplica antes del primer pintado leyendo `localStorage` (clave `theme`) o, si no existe, `prefers-color-scheme`. Los colores son tokens CSS que se redefinen por tema (ADR-008).
@@ -130,6 +132,7 @@ Scripts: `npm run dev`, `npm run build` (ejecuta `astro check` antes de compilar
 - **Estilos**: usar siempre tokens semánticos (`bg`, `surface`, `text`, `accent`…), nunca colores literales en componentes.
 - **Accesibilidad**: HTML semántico (`header`, `nav`, `main`, `section` con encabezado, `footer`); un único `h1`; `alt` descriptivo en imágenes; enlaces externos con `rel="noopener noreferrer"`.
 - **Formato**: Prettier con la configuración por defecto salvo decisión contraria; `.editorconfig` para el editor.
+- **Espacios en texto con etiquetas en línea**: Prettier puede partir la línea entre una etiqueta (`<strong>`, `<span>`) y el texto que la sigue, y Astro elimina ese salto, de modo que las palabras quedan pegadas. Usa `{" "}` explícito, o pseudoelementos para prefijos decorativos (como `~/`). Tras cambiar textos, revisa el HTML de `dist/`.
 - **Commits**: Conventional Commits en español (`feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `chore:`). Propuesta, ver ADR-014.
 
 ## 7. Sistema de diseño
@@ -158,7 +161,7 @@ Uso de los pares:
 
 Todo par nuevo de texto y fondo debe medirse antes de usarlo (RNF-03).
 
-Componentes base en `src/components/ui/`: `Button` (`primary`, `secondary`, `ghost`; genera `<a>` con `href`), `Card` (`interactive` para el efecto de elevación) y `Tag` (`neutral`, `accent`). La página interna `src/pages/muestra.astro` los muestra en ambos temas; se elimina antes del despliegue.
+Componentes base en `src/components/ui/`: `Button` (`primary`, `secondary`, `ghost`; genera `<a>` con `href`), `Card` (`interactive` para el efecto de elevación) `Tag` (`neutral`, `accent`), `Icon` (trazados en `icons.ts`), `SectionHeading` y `SocialLinks`. La página interna `src/pages/muestra.astro` los muestra en ambos temas; se elimina antes del despliegue.
 
 ### Movimiento
 

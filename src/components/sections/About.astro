@@ -1,0 +1,61 @@
+---
+import Card from "../ui/Card.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+// RF-10 (ADR-013). Cifras confirmadas en ADR-015.
+const stats = [
+  { value: "8 años", label: "en soporte IT y Service Desk" },
+  { value: "+50", label: "clientes en mi servicio técnico" },
+  { value: "715", label: "tests automatizados en mi proyecto principal" },
+];
+---
+
+<section
+  id="sobre-mi"
+  aria-labelledby="sobre-mi-titulo"
+  class="border-t border-border"
+>
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+    <SectionHeading
+      id="sobre-mi-titulo"
+      index="01"
+      eyebrow="sobre mí"
+      title="De mantener sistemas a construirlos"
+    />
+
+    <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-4 text-lg text-pretty text-text-muted">
+        <p>
+          Llevo <strong class="font-medium text-text">8 años</strong>{" "}
+          resolviendo problemas técnicos: primero como técnico de Service Desk y
+          después dirigiendo mi propio servicio técnico,{" "}
+          <strong class="font-medium text-text">SoftHard A&L</strong>, con más
+          de 50 clientes entre particulares y pequeñas empresas. Ese trabajo me
+          enseñó a diagnosticar con método, a explicar lo técnico con claridad y
+          a entender qué necesita de verdad cada usuario.
+        </p>
+        <p>
+          Ahora llevo esa experiencia al desarrollo. Curso el{" "}
+          <strong class="font-medium text-text">
+            CFGS de Desarrollo de Aplicaciones Multiplataforma
+          </strong>{" "}
+          y me formo en backend con Java. Además, he construido una aplicación
+          web full stack para gestionar un taller de reparación, dirigiendo
+          agentes de IA a partir de mi conocimiento del negocio. Busco prácticas
+          de desarrollo o un puesto de soporte con proyección técnica.
+        </p>
+      </div>
+
+      <ul class="grid gap-4 sm:grid-cols-3">
+        {stats.map((stat) => (
+          <Card as="li" class="flex flex-col gap-1">
+            <span class="bg-(image:--gradient-brand) bg-clip-text text-3xl font-bold tracking-tight text-transparent">
+              {stat.value}
+            </span>
+            <span class="text-sm text-text-muted">{stat.label}</span>
+          </Card>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

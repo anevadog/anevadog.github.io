@@ -1,0 +1,28 @@
+---
+/* Enlaces de perfil con icono (RF-08). */
+import Icon from "./Icon.astro";
+import { profile } from "../../data/profile";
+---
+
+<ul class="flex items-center gap-1">
+  {profile.links.map((link) => {
+    const external = link.href.startsWith("http");
+    return (
+      <li>
+        <a
+          href={link.href}
+          aria-label={link.label}
+          title={link.label}
+          class="group relative isolate inline-flex size-10 items-center justify-center overflow-hidden rounded-lg text-text-muted hover:text-text"
+          {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+        >
+          <span
+            aria-hidden="true"
+            class="absolute inset-0 -z-10 bg-text/6 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+          />
+          <Icon name={link.icon} />
+        </a>
+      </li>
+    );
+  })}
+</ul>

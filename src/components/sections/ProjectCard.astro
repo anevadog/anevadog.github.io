@@ -1,0 +1,108 @@
+---
+import { Image } from "astro:assets";
+import Button from "../ui/Button.astro";
+import Card from "../ui/Card.astro";
+import Icon from "../ui/Icon.astro";
+import Tag from "../ui/Tag.astro";
+import { requestAccessHref, type Project } from "../../data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+{project.status === "upcoming" ? (
+  <li class="flex flex-col items-start gap-3 rounded-xl border border-dashed border-border-strong p-6">
+    <span class="inline-flex items-center gap-1.5 font-mono text-xs text-text-muted">
+      <Icon name="clock" class="size-4" />
+      en desarrollo
+    </span>
+    <h3 class="text-lg font-semibold">Próximo proyecto</h3>
+    <p class="text-sm text-text-muted">
+      Proyecto personal en curso. Se publicará aquí, con su repositorio, en
+      cuanto esté terminado.
+    </p>
+  </li>
+) : (
+  <Card
+    as="li"
+    interactive
+    class="grid gap-6 md:col-span-2 lg:grid-cols-[1fr_1.15fr] lg:gap-8"
+  >
+    <div class="relative isolate flex aspect-video items-center justify-center overflow-hidden rounded-lg border border-border bg-bg">
+      {project.image ? (
+        <Image
+          src={project.image}
+          alt={project.imageAlt ?? ""}
+          class="size-full object-cover"
+        />
+      ) : (
+        <div aria-hidden="true" class="contents">
+          <div class="absolute inset-0 -z-10 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-size-[1.5rem_1.5rem] opacity-60" />
+          <div class="absolute -right-10 -bottom-16 -z-10 size-56 rounded-full bg-accent opacity-15 blur-3xl" />
+          <span class="font-mono text-lg text-text before:text-accent before:content-['~/'] sm:text-xl">
+            {project.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
+          </span>
+        </div>
+      )}
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-1">
+        <p class="font-mono text-xs text-text-muted">
+          Proyecto personal · {project.year}
+        </p>
+        <h3 class="text-2xl font-bold tracking-tight">{project.title}</h3>
+        <p class="font-medium text-text-muted">{project.subtitle}</p>
+      </div>
+
+      <p class="text-sm text-pretty text-text-muted">{project.description}</p>
+
+      <ul class="flex flex-col gap-2 text-sm text-pretty">
+        {project.highlights.map((highlight) => (
+          <li class="flex gap-2">
+            <span aria-hidden="true" class="font-mono text-accent">
+              ›
+            </span>
+            <span>{highlight}</span>
+          </li>
+        ))}
+      </ul>
+
+      <ul class="flex flex-wrap gap-2" aria-label="Tecnologías">
+        {project.tech.map((tech) => (
+          <li>
+            <Tag>{tech}</Tag>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-auto flex flex-wrap items-center gap-3 pt-2">
+        {"url" in project.repo ? (
+          <Button variant="secondary" href={project.repo.url} external>
+            <Icon name="github" class="size-4" />
+            Repositorio
+          </Button>
+        ) : (
+          <>
+            <span class="inline-flex items-center gap-1.5 text-sm text-text-muted">
+              <Icon name="lock" class="size-4" />
+              Repositorio privado
+            </span>
+            <Button variant="secondary" href={requestAccessHref(project)}>
+              Solicitar acceso
+            </Button>
+          </>
+        )}
+        {project.demoUrl && (
+          <Button href={project.demoUrl} external>
+            Ver demo
+            <Icon name="external" class="size-4" />
+          </Button>
+        )}
+      </div>
+    </div>
+  </Card>
+)}

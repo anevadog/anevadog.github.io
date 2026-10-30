@@ -1,0 +1,27 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import { projects } from "../../data/projects";
+---
+
+<section
+  id="proyectos"
+  aria-labelledby="proyectos-titulo"
+  class="border-t border-border"
+>
+  <div class="mx-auto flex max-w-6xl flex-col gap-12 px-4 py-24 sm:px-6">
+    <SectionHeading
+      id="proyectos-titulo"
+      index="02"
+      eyebrow="proyectos"
+      title="Proyectos destacados"
+      description="Lo que construyo para aprender y para resolver problemas reales."
+    />
+
+    <ul class="grid gap-6 md:grid-cols-2">
+      {projects.map((project) => (
+        <ProjectCard project={project} />
+      ))}
+    </ul>
+  </div>
+</section>
