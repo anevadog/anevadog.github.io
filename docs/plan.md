@@ -76,11 +76,13 @@ Realizada el 2026-10-30 sobre el build de producción (`astro preview`).
 
 ## Fase 7 — Despliegue `[ ]`
 
-Requiere autorización. Bloqueada por ADR-003.
+Aprobada el 2026-10-30: GitHub Pages en `anevadog.github.io`, publicando con el contenido pendiente (ADR-003).
 
-- [ ] Eliminar la página interna `src/pages/muestra.astro`
-- [ ] Configurar el hosting elegido
-- [ ] Configurar `site` (y `base` si aplica) en `astro.config.mjs`, y añadir `og:url`, `og:image` (con `public/og-image.png`) y la URL canónica
+- [x] Auditoría previa: historial de Git sin teléfonos, secretos ni `privado/`; imagen OG sin metadatos
+- [x] Eliminar la página interna `src/pages/muestra.astro`
+- [x] Configurar el hosting: workflow `.github/workflows/deploy.yml` (acciones oficiales de GitHub, Node desde `.nvmrc`, `npm run build`)
+- [x] Configurar `site` en `astro.config.mjs` (sin `base`), y añadir `og:url`, `og:image` con dimensiones y texto alternativo, Twitter `summary_large_image` y la URL canónica. La 404 lleva `noindex` y no tiene URL canónica
+- [ ] Crear el repositorio remoto, primer `push` y activar Pages con «GitHub Actions» (propietario, P-6)
 - [ ] Verificación final en producción
 - [ ] Pruebas en dispositivos reales: Safari iOS y Chrome Android (lista de comprobaciones para el propietario)
 

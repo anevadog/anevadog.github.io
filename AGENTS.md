@@ -68,16 +68,16 @@ Prioridad: **M** = imprescindible · **S** = debería · **C** = deseable.
 
 ## 4. Stack
 
-| Pieza                  | Elección                                                                  | Decisión            |
-| ---------------------- | ------------------------------------------------------------------------- | ------------------- |
-| Framework              | Astro (versión estable más reciente al inicializar) + TypeScript estricto | ADR-001             |
-| Estilos                | Tailwind CSS v4 + tokens en CSS custom properties                         | ADR-002             |
-| Interactividad         | Scripts nativos en TypeScript, sin framework de UI                        | ADR-007             |
-| Transiciones           | CSS + View Transitions API (mejora progresiva)                            | ADR-007             |
-| Tipografía             | Fuentes variables autoalojadas con Fontsource                             | ADR-006 / ADR-011   |
-| Formato y comprobación | Prettier (+ `prettier-plugin-astro`), `astro check`                       | —                   |
-| Hosting                | GitHub Pages                                                              | ADR-003 (Propuesta) |
-| Entorno                | Node 24 (`.nvmrc`), npm                                                   | —                   |
+| Pieza                  | Elección                                                                  | Decisión          |
+| ---------------------- | ------------------------------------------------------------------------- | ----------------- |
+| Framework              | Astro (versión estable más reciente al inicializar) + TypeScript estricto | ADR-001           |
+| Estilos                | Tailwind CSS v4 + tokens en CSS custom properties                         | ADR-002           |
+| Interactividad         | Scripts nativos en TypeScript, sin framework de UI                        | ADR-007           |
+| Transiciones           | CSS + View Transitions API (mejora progresiva)                            | ADR-007           |
+| Tipografía             | Fuentes variables autoalojadas con Fontsource                             | ADR-006 / ADR-011 |
+| Formato y comprobación | Prettier (+ `prettier-plugin-astro`), `astro check`                       | —                 |
+| Hosting                | GitHub Pages (`anevadog.github.io`) con GitHub Actions                    | ADR-003           |
+| Entorno                | Node 24 (`.nvmrc`), npm                                                   | —                 |
 
 No se añaden dependencias fuera de esta tabla sin aprobación previa (ver §9).
 
@@ -92,7 +92,7 @@ Sitio estático generado en tiempo de compilación. Sin servidor, base de datos 
 - **Imágenes** de proyectos en `src/assets/projects/`, optimizadas con `astro:assets` (formatos modernos, dimensiones explícitas para evitar CLS).
 - **CV** público en `public/cv/`, servido tal cual para la descarga.
 - **Tema**: atributo `data-theme="light|dark"` en `<html>`. Un script en línea en `<head>` lo aplica antes del primer pintado leyendo `localStorage` (clave `theme`) o, si no existe, `prefers-color-scheme`. Los colores son tokens CSS que se redefinen por tema (ADR-008).
-- **Layout**: `src/layouts/BaseLayout.astro` define los metadatos, la precarga de la fuente latina, el script de tema en línea y el enlace «Saltar al contenido». `Header` y `Footer` están en `src/components/layout/`.
+- **Layout**: `src/layouts/BaseLayout.astro` define los metadatos (URL canónica y Open Graph absolutos a partir de `site`; prop `noindex` para la 404), la precarga de la fuente latina, el script de tema en línea y el enlace «Saltar al contenido». `Header` y `Footer` están en `src/components/layout/`.
 - **JavaScript en cliente** mínimo: tema (`src/scripts/theme.ts`), menú móvil, borde de la cabecera al hacer scroll y resaltado de la sección visible (en `Header.astro`), y aparición de elementos al hacer scroll (`src/scripts/reveal.ts`, cargado desde `BaseLayout`). Todo con IntersectionObserver y APIs nativas.
 
 ### Estructura de carpetas
@@ -100,6 +100,7 @@ Sitio estático generado en tiempo de compilación. Sin servidor, base de datos 
 ```
 portafolio/
 ├── AGENTS.md · CLAUDE.md · README.md
+├── .github/workflows/       deploy.yml (publicación en GitHub Pages)
 ├── .gitignore · .gitattributes · .editorconfig · .nvmrc
 ├── docs/                    plan.md · memoria.md · decisiones.md
 ├── privado/                 (ignorada por Git) CV original con datos completos
@@ -161,7 +162,7 @@ Uso de los pares:
 
 Todo par nuevo de texto y fondo debe medirse antes de usarlo (RNF-03).
 
-Componentes base en `src/components/ui/`: `Button` (`primary`, `secondary`, `ghost`; genera `<a>` con `href`), `Card` (`interactive` para el efecto de elevación) `Tag` (`neutral`, `accent`), `Icon` (trazados en `icons.ts`), `SectionHeading` y `SocialLinks`. La página interna `src/pages/muestra.astro` los muestra en ambos temas; se elimina antes del despliegue.
+Componentes base en `src/components/ui/`: `Button` (`primary`, `secondary`, `ghost`; genera `<a>` con `href`), `Card` (`interactive` para el efecto de elevación) `Tag` (`neutral`, `accent`), `Icon` (trazados en `icons.ts`), `SectionHeading` y `SocialLinks`.
 
 ### Movimiento
 

@@ -42,15 +42,15 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 ## ADR-003 — Hosting en GitHub Pages, sin dominio propio
 
-**Estado:** Propuesta · **Fecha:** 2026-10-30
+**Estado:** Aceptada · **Fecha:** 2026-10-30
 
 **Contexto:** sitio estático; prioridad a opciones gratuitas.
 
-**Decisión propuesta:** GitHub Pages, publicado mediante GitHub Actions. Sin dominio propio por ahora.
+**Decisión:** GitHub Pages en el repositorio público `anevadog.github.io` (URL `https://anevadog.github.io/`, sin `base`), publicado mediante GitHub Actions (`.github/workflows/deploy.yml`, solo acciones oficiales de GitHub). Sin dominio propio por ahora. Se publica con el contenido pendiente (P-1 a P-4); cada `push` a `main` vuelve a desplegar.
 
 **Alternativas:** Netlify, Vercel o Cloudflare Pages (gratuitos para este caso; requieren otra cuenta). Dominio propio: unos 10–15 €/año, solo con aprobación.
 
-**Consecuencias:** si el repositorio no se llama `<usuario>.github.io`, el sitio se sirve bajo una subruta y hay que configurar `base` en Astro. Requiere un remoto en GitHub (no existe todavía) y autorización para crearlo y desplegar.
+**Consecuencias:** el sitio se sirve en la raíz, así que no hace falta `base` (`publicPath()` lo seguiría respetando si cambiara). El repositorio es público: todo el historial queda visible (auditado el 2026-10-30, sin datos sensibles). En el repositorio, **Settings → Pages → Source** debe estar en «GitHub Actions».
 
 ## ADR-004 — CV en HTML + descarga en PDF
 

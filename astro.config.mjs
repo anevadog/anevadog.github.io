@@ -2,8 +2,10 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
-// `site` (y `base`, si aplica) se configuran en la Fase 7 según ADR-003.
+// GitHub Pages en el repositorio `anevadog.github.io`: se sirve en la raíz,
+// sin `base` (ADR-003).
 export default defineConfig({
+  site: "https://anevadog.github.io",
   vite: {
     plugins: [tailwindcss()],
   },
