@@ -10,7 +10,7 @@ Leyenda: `[ ]` pendiente · `[~]` en curso · `[x]` hecho
 - [x] Análisis y propuesta (etapa 1)
 - [x] Preparación documental (etapa 2)
 - [x] Revisión de la documentación por el propietario (etapa 3)
-- [x] Resolver las decisiones bloqueantes de la Fase 1: ADR-002 (aceptada); ADR-010 aprobada, falta aclarar la opción (no bloquea)
+- [x] Resolver las decisiones bloqueantes de la Fase 1: ADR-002 (aceptada); ADR-010 (aceptada: `main`)
 
 ## Fase 1 — Inicialización `[x]`
 

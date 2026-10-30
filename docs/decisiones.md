@@ -115,13 +115,13 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 ## ADR-010 — Nombre de la rama principal
 
-**Estado:** Pendiente
+**Estado:** Aceptada · **Fecha:** 2026-10-30
 
-**Contexto:** el repositorio está en `master`; las convenciones habituales de GitHub usan `main`.
+**Contexto:** el repositorio se creó en `master`; las convenciones habituales de GitHub usan `main`.
 
-**Opciones:** mantener `master`, o renombrarla a `main` antes del primer commit.
+**Decisión:** la rama principal es `main`. El propietario la renombra con `git branch -m main` antes del primer commit (`AGENTS.md` §9).
 
-**Nota:** el propietario aprobó la decisión el 2026-10-30, pero falta aclarar cuál de las dos opciones elige. Si renombra, lo hace él mismo antes del primer commit (`AGENTS.md` §9).
+**Alternativa descartada:** mantener `master`.
 
 ## ADR-011 — Identidad visual: paleta y tipografía
 
