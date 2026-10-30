@@ -1,3 +1,105 @@
 @import "tailwindcss";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
 
-/* Tokens de diseño y temas: se definen en la Fase 2 (ADR-011). */
+/* Variante `dark:` ligada al atributo `data-theme` (ADR-008). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+ * Tokens de diseño: dirección B «Grafito esmeralda» (ADR-011).
+ * Se eliminan los colores por defecto de Tailwind para que los componentes
+ * solo puedan usar tokens semánticos (AGENTS.md §6).
+ * Valores del tema claro; el tema oscuro los redefine más abajo.
+ */
+@theme {
+  --color-*: initial;
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #ffffff;
+  --color-border: #e5e5e5;
+  --color-border-strong: #8f8f8f;
+  --color-text: #0a0a0a;
+  --color-text-muted: #525252;
+  --color-accent: #047857;
+  --color-accent-hover: #065f46;
+  --color-accent-2: #4d7c0f;
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft: #e1efeb;
+
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+
+  --shadow-elevated:
+    0 1px 2px rgb(10 10 10 / 0.04), 0 8px 24px rgb(10 10 10 / 0.06);
+}
+
+/*
+ * Los tokens derivados (`accent-soft`, gradiente) se declaran con su valor
+ * final en cada tema: una custom property heredada no se recalcula al cambiar
+ * `--color-accent` en un descendiente.
+ */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --gradient-brand: linear-gradient(
+    90deg,
+    var(--color-accent),
+    var(--color-accent-2)
+  );
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #0a0a0a;
+  --color-surface: #151515;
+  --color-surface-elevated: #1c1c1c;
+  --color-border: #262626;
+  --color-border-strong: #6b6b6b;
+  --color-text: #ededed;
+  --color-text-muted: #a1a1a1;
+  --color-accent: #34d399;
+  --color-accent-hover: #6ee7b7;
+  --color-accent-2: #a3e635;
+  --color-accent-contrast: #04291a;
+  --color-accent-soft: #192c25;
+  --shadow-elevated: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.45);
+  --gradient-brand: linear-gradient(
+    90deg,
+    var(--color-accent),
+    var(--color-accent-2)
+  );
+}
+
+@layer base {
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-accent-contrast);
+  }
+
+  /* AGENTS.md §7: sin desplazamientos con movimiento reducido. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

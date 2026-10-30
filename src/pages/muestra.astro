@@ -1,0 +1,123 @@
+---
+/*
+ * Página interna para revisar tokens y componentes en ambos temas.
+ * Se elimina antes del despliegue (Fase 7 de docs/plan.md).
+ */
+import "../styles/global.css";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
+import Tag from "../components/ui/Tag.astro";
+
+const themes = [
+  { id: "light", label: "Tema claro" },
+  { id: "dark", label: "Tema oscuro" },
+] as const;
+
+const swatches = [
+  "bg",
+  "surface",
+  "surface-elevated",
+  "border",
+  "border-strong",
+  "text",
+  "text-muted",
+  "accent",
+  "accent-hover",
+  "accent-2",
+  "accent-contrast",
+  "accent-soft",
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Muestra del sistema de diseño</title>
+  </head>
+  <body class="grid lg:grid-cols-2">
+    {themes.map((theme) => (
+      <main
+        data-theme={theme.id}
+        class="flex flex-col gap-12 bg-bg px-4 py-10 text-text sm:px-8"
+        aria-label={theme.label}
+      >
+        <p class="font-mono text-xs text-text-muted">
+          {theme.label} · data-theme="{theme.id}"
+        </p>
+
+        <section class="flex flex-col gap-4">
+          <p class="font-mono text-sm text-accent-2">~/portafolio $</p>
+          <h1 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">
+            Tu{" "}
+            <span class="bg-(image:--gradient-brand) bg-clip-text text-transparent">
+              nombre
+            </span>
+          </h1>
+          <p class="max-w-prose text-lg text-text-muted">
+            Perfil profesional y una frase breve sobre lo que construyes. Texto
+            secundario para comprobar la legibilidad del cuerpo.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <Button href="#proyectos">Ver proyectos</Button>
+            <Button variant="secondary" href="#cv">
+              Descargar CV
+            </Button>
+            <Button variant="ghost">Botón fantasma</Button>
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-3">
+          <h2 class="text-2xl font-semibold tracking-tight">
+            Escala tipográfica
+          </h2>
+          <p class="text-3xl font-bold tracking-tight">Título 3xl · 700</p>
+          <p class="text-xl font-semibold">Subtítulo xl · 600</p>
+          <p class="text-base">Cuerpo base · 400 · áéíóú ñ ¿? ¡!</p>
+          <p class="text-sm text-text-muted">Texto secundario sm</p>
+          <p class="font-mono text-sm">const stack = ["astro", "ts"];</p>
+        </section>
+
+        <section class="flex flex-col gap-4">
+          <h2 class="text-2xl font-semibold tracking-tight">Tarjetas</h2>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <Card as="article" interactive>
+              <h3 class="font-semibold">Proyecto destacado</h3>
+              <p class="mt-1 text-sm text-text-muted">
+                Tarjeta interactiva: se eleva al pasar el ratón.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <Tag>astro</Tag>
+                <Tag>typescript</Tag>
+                <Tag tone="accent">tailwind</Tag>
+              </div>
+            </Card>
+            <Card>
+              <h3 class="font-semibold">Tarjeta estática</h3>
+              <p class="mt-1 text-sm text-text-muted">
+                Sin efecto al pasar el ratón.
+              </p>
+            </Card>
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-4">
+          <h2 class="text-2xl font-semibold tracking-tight">Tokens de color</h2>
+          <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {swatches.map((name) => (
+              <li class="flex items-center gap-3">
+                <span
+                  class="size-8 shrink-0 rounded-md border border-border"
+                  style={`background: var(--color-${name})`}
+                />
+                <span class="font-mono text-xs text-text-muted">{name}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </main>
+    ))}
+  </body>
+</html>

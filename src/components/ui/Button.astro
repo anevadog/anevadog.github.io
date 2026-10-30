@@ -1,0 +1,63 @@
+---
+/*
+ * Botón o enlace con aspecto de botón. Con `href` genera un <a>; sin él, un
+ * <button>. El hover anima solo la opacidad de una capa superpuesta y el
+ * pulsado solo `transform` (RNF-04).
+ */
+interface Props {
+  variant?: "primary" | "secondary" | "ghost";
+  href?: string;
+  type?: "button" | "submit";
+  download?: boolean | string;
+  external?: boolean;
+  class?: string;
+}
+
+const {
+  variant = "primary",
+  href,
+  type = "button",
+  download,
+  external = false,
+  class: className,
+} = Astro.props;
+
+const variants = {
+  primary: "bg-accent text-accent-contrast",
+  secondary: "border border-border-strong bg-surface text-text",
+  ghost: "text-text",
+};
+
+const overlays = {
+  primary: "bg-accent-hover",
+  secondary: "bg-text/6",
+  ghost: "bg-text/6",
+};
+
+const classes = [
+  "group relative isolate inline-flex items-center justify-center gap-2 overflow-hidden rounded-lg px-4 py-2.5 text-sm font-medium",
+  "transition-transform duration-150 ease-out active:scale-[0.98] motion-reduce:active:scale-100",
+  variants[variant],
+  className,
+];
+
+const Tag = href ? "a" : "button";
+const linkProps = href
+  ? {
+      href,
+      download,
+      ...(external && { target: "_blank", rel: "noopener noreferrer" }),
+    }
+  : { type };
+---
+
+<Tag class:list={classes} {...linkProps}>
+  <span
+    aria-hidden="true"
+    class:list={[
+      "absolute inset-0 -z-10 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100",
+      overlays[variant],
+    ]}
+  ></span>
+  <slot />
+</Tag>

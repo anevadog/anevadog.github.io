@@ -23,15 +23,14 @@ Autorizada por el propietario el 2026-10-30.
 - [x] Registrar las versiones instaladas en ADR-001 / ADR-002
 - [x] Verificar `npm run dev`, `npm run build` y `astro check`
 
-## Fase 2 — Sistema de diseño `[ ]`
+## Fase 2 — Sistema de diseño `[x]`
 
-Bloqueada por ADR-011.
-
-- [ ] Proponer 2–3 direcciones visuales (paleta + tipografía) y elegir una
-- [ ] Definir tokens para tema claro y oscuro en `src/styles/global.css`
-- [ ] Verificar el contraste de todos los pares de tokens en ambos temas (RNF-03)
-- [ ] Autoalojar las fuentes elegidas (ADR-006)
-- [ ] Componentes UI base: `Button`, `Card`, `Tag`
+- [x] Proponer 2–3 direcciones visuales (paleta + tipografía) y elegir una: B «Grafito esmeralda» (ADR-011)
+- [x] Definir tokens para tema claro y oscuro en `src/styles/global.css`
+- [x] Verificar el contraste de todos los pares de tokens en ambos temas (RNF-03)
+- [x] Autoalojar las fuentes elegidas (ADR-006)
+- [x] Componentes UI base: `Button`, `Card`, `Tag`
+- [x] Página interna de muestra `src/pages/muestra.astro`, revisada a 375 px y 1440 px
 
 ## Fase 3 — Layout, navegación y tema `[ ]`
 
@@ -68,6 +67,7 @@ Bloqueada por ADR-011.
 
 Requiere autorización. Bloqueada por ADR-003.
 
+- [ ] Eliminar la página interna `src/pages/muestra.astro`
 - [ ] Configurar el hosting elegido
 - [ ] Configurar `site` (y `base` si aplica) en `astro.config.mjs`
 - [ ] Verificación final en producción

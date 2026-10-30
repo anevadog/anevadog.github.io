@@ -140,15 +140,30 @@ Scripts: `npm run dev`, `npm run build` (ejecuta `astro check` antes de compilar
 - Jerarquía tipográfica clara; espacio en blanco generoso.
 - Coherencia total entre tema claro y oscuro: misma identidad, contraste verificado en ambos.
 
-### Tokens semánticos (valores **PENDIENTE**, ADR-011)
+### Tokens semánticos (dirección B «Grafito esmeralda», ADR-011)
 
-`--color-bg`, `--color-surface`, `--color-surface-elevated`, `--color-border`, `--color-text`, `--color-text-muted`, `--color-accent`, `--color-accent-contrast`, `--gradient-brand`, `--shadow-elevated`, `--font-sans`, `--font-display`, `--font-mono`.
+Definidos en `src/styles/global.css`: valores del tema claro en `@theme` y redefinición del oscuro bajo `[data-theme="dark"]`. Los colores por defecto de Tailwind están desactivados (`--color-*: initial`), así que solo existen estos:
+
+- **Color** (utilidades `bg-*`, `text-*`, `border-*`): `bg`, `surface`, `surface-elevated`, `border`, `border-strong`, `text`, `text-muted`, `accent`, `accent-hover`, `accent-2`, `accent-contrast`, `accent-soft`. Ejemplos: `bg-surface`, `text-text-muted`, `border-border-strong`.
+- **Tipografía**: `font-sans` y `font-display` (Geist Variable), `font-mono` (Geist Mono Variable).
+- **Sombra**: `shadow-elevated`.
+- **Gradiente**: `--gradient-brand`, usado con `bg-(image:--gradient-brand)`. Solo en textos grandes o elementos decorativos.
+
+Uso de los pares:
+
+- `border-strong` es para bordes de componentes interactivos (≥ 3:1); `border` es decorativo.
+- `accent-contrast` es el texto sobre `accent` y `accent-hover`.
+- Los tokens derivados (`accent-soft`, `--gradient-brand`) se declaran con su valor final en cada tema.
+
+Todo par nuevo de texto y fondo debe medirse antes de usarlo (RNF-03).
+
+Componentes base en `src/components/ui/`: `Button` (`primary`, `secondary`, `ghost`; genera `<a>` con `href`), `Card` (`interactive` para el efecto de elevación) y `Tag` (`neutral`, `accent`). La página interna `src/pages/muestra.astro` los muestra en ambos temas; se elimina antes del despliegue.
 
 ### Movimiento
 
 - Microinteracciones (hover, foco, pulsación): 150–250 ms.
 - Aparición de secciones: ≤ 600 ms, una sola vez por elemento.
-- Solo `transform` y `opacity`. Con `prefers-reduced-motion: reduce`, se eliminan desplazamientos y se mantienen cambios de opacidad instantáneos o muy breves.
+- Solo `transform` y `opacity`. Los cambios de color o sombra al pasar el ratón se hacen animando la opacidad de una capa superpuesta o de un pseudoelemento (ver `Button` y `Card`). Con `prefers-reduced-motion: reduce`, se eliminan desplazamientos y se mantienen cambios de opacidad instantáneos o muy breves.
 
 ### Breakpoints
 

@@ -125,11 +125,29 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 ## ADR-011 — Identidad visual: paleta y tipografía
 
-**Estado:** Pendiente (se resuelve en la Fase 2)
+**Estado:** Aceptada · **Fecha:** 2026-10-30
 
-**Contexto:** el propietario no ha indicado preferencias de color ni de tipografía.
+**Contexto:** se propusieron tres direcciones visuales con el contraste verificado: A «Índigo nocturno», B «Grafito esmeralda» y C «Tinta y coral».
 
-**Plan:** proponer 2–3 direcciones visuales (paleta para ambos temas + combinación tipográfica: display, texto y monoespaciada), con el contraste verificado, para que el propietario elija.
+**Decisión:** dirección B, «Grafito esmeralda». Estética sobria y técnica, con guiños de terminal.
+
+- **Tipografía:** Geist (títulos y texto) y Geist Mono (etiquetas, tecnologías, detalles), ambas variables y con licencia OFL-1.1, desde `@fontsource-variable/geist` y `@fontsource-variable/geist-mono`.
+- **Paleta base** (la escala completa, con `surface-elevated`, `border`, `border-strong`, `accent-hover` y `accent-soft`, está en `src/styles/global.css`):
+
+| Token             | Oscuro    | Claro     |
+| ----------------- | --------- | --------- |
+| `bg`              | `#0A0A0A` | `#FAFAFA` |
+| `surface`         | `#151515` | `#FFFFFF` |
+| `text`            | `#EDEDED` | `#0A0A0A` |
+| `text-muted`      | `#A1A1A1` | `#525252` |
+| `accent`          | `#34D399` | `#047857` |
+| `accent-2`        | `#A3E635` | `#4D7C0F` |
+| `accent-contrast` | `#04291A` | `#FFFFFF` |
+
+- **Contraste medido (WCAG), con la escala completa:** todos los pares de texto ≥ 4,5:1 en ambos temas; el más justo es `accent` sobre `accent-soft` en tema claro, con 4,63:1. `border-strong` ≥ 3:1 sobre `bg` y `surface` (mínimo 3,10:1 en tema claro).
+- **Carga de fuentes:** se importan los CSS completos de Fontsource. Todos los subconjuntos se copian a `dist/`, pero gracias a `unicode-range` el navegador solo descarga el latino.
+
+**Alternativas descartadas:** A (muy habitual en portafolios de desarrolladores) y C (editorial; la serifa en títulos exige más cuidado con la jerarquía).
 
 ## ADR-012 — Datos personales publicados
 
