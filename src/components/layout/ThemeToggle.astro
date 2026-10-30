@@ -1,0 +1,51 @@
+---
+/*
+ * Botón de tema. `aria-pressed` indica si el tema oscuro está activo. Los
+ * iconos se alternan con la variante `dark:`, animando solo opacidad y
+ * rotación (RNF-04).
+ */
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  aria-label="Tema oscuro"
+  aria-pressed="false"
+  class="group relative isolate inline-flex size-10 items-center justify-center overflow-hidden rounded-lg text-text-muted transition-transform duration-150 ease-out hover:text-text active:scale-95 motion-reduce:active:scale-100"
+>
+  <span
+    aria-hidden="true"
+    class="absolute inset-0 -z-10 bg-text/6 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+  ></span>
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    class="absolute size-5 transition-[opacity,rotate] duration-300 ease-out dark:-rotate-90 dark:opacity-0"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+  </svg>
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    class="absolute size-5 rotate-90 opacity-0 transition-[opacity,rotate] duration-300 ease-out dark:rotate-0 dark:opacity-100"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+  </svg>
+</button>
+
+<script>
+  import { initTheme } from "../../scripts/theme";
+
+  initTheme();
+</script>

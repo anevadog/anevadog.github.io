@@ -90,7 +90,8 @@ Sitio estático generado en tiempo de compilación. Sin servidor, base de datos 
 - **Imágenes** de proyectos en `src/assets/projects/`, optimizadas con `astro:assets` (formatos modernos, dimensiones explícitas para evitar CLS).
 - **CV** público en `public/cv/`, servido tal cual para la descarga.
 - **Tema**: atributo `data-theme="light|dark"` en `<html>`. Un script en línea en `<head>` lo aplica antes del primer pintado leyendo `localStorage` (clave `theme`) o, si no existe, `prefers-color-scheme`. Los colores son tokens CSS que se redefinen por tema (ADR-008).
-- **JavaScript en cliente** mínimo: tema, menú móvil y aparición de elementos al hacer scroll (IntersectionObserver).
+- **Layout**: `src/layouts/BaseLayout.astro` define los metadatos, la precarga de la fuente latina, el script de tema en línea y el enlace «Saltar al contenido». `Header` y `Footer` están en `src/components/layout/`.
+- **JavaScript en cliente** mínimo: tema (`src/scripts/theme.ts`), menú móvil y resaltado de la sección visible (en `Header.astro`), y aparición de elementos al hacer scroll (Fase 5). Todo con IntersectionObserver y APIs nativas.
 
 ### Estructura de carpetas
 

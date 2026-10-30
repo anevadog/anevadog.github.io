@@ -6,22 +6,30 @@ Estado actual y punto de continuación. Se actualiza al final de cada sesión.
 
 ## Estado actual
 
-- Fases 0, 1 y 2 completadas.
+- Fases 0, 1, 2 y 3 completadas.
 - Stack instalado: Astro 7.4.4, Tailwind CSS 4.3.3, TypeScript 6.0.3 (estricto), Prettier 3.9.10, `@astrojs/check`, y Geist / Geist Mono (`@fontsource-variable/*` 5.3.0).
-- Sistema de diseño B «Grafito esmeralda» en `src/styles/global.css`, con los tokens de ambos temas y el contraste verificado (ADR-011).
-- Componentes base: `src/components/ui/Button.astro`, `Card.astro` y `Tag.astro`.
-- Página interna `/muestra` para revisar tokens y componentes; se elimina antes del despliegue.
-- `src/pages/index.astro` sigue siendo la página provisional.
-- Git: rama `main` con commits de las Fases 0 y 1 y sin remoto. El propietario ejecuta `git add`, `commit` y `push`; el agente le indica cuándo y le da los comandos (`AGENTS.md` §9).
+- Sistema de diseño B «Grafito esmeralda» en `src/styles/global.css` (ADR-011). Componentes base en `src/components/ui/`.
+- Layout: `BaseLayout` (SEO, precarga de fuente, tema sin parpadeo, enlace «Saltar al contenido»), `Header` (navegación, menú móvil, resaltado de sección), `ThemeToggle` y `Footer`.
+- `src/pages/index.astro` usa el layout con secciones provisionales (`#inicio`, `#proyectos`, `#cv`). `src/data/profile.ts` contiene datos de ejemplo marcados como PENDIENTE.
+- Página interna `/muestra`; se elimina antes del despliegue.
+- Git: rama `main` con commits hasta la Fase 2 y sin remoto. El propietario ejecuta `git add`, `commit` y `push`; el agente le indica cuándo y le da los comandos (`AGENTS.md` §9).
 
 ## Último paso realizado
 
-Fase 2: tokens y temas, fuentes autoalojadas, componentes base y página de muestra. Validado: contraste medido, `npm run build` (con `astro check`) y `npm run format:check` sin errores, fuentes cargadas sin peticiones a terceros y sin scroll horizontal a 375 px ni a 1440 px.
+Fase 3 validada:
+
+- `npm run build` (con `astro check`) y `npm run format:check` sin errores.
+- Tema: sigue al sistema sin preferencia guardada, la elección se guarda y tiene prioridad, y el script está en línea en `<head>`.
+- Teclado: orden de tabulación correcto, foco visible y enlace «Saltar al contenido» funcional.
+- Menú móvil: se cierra con `Esc` (el foco vuelve al botón), al elegir un enlace y al pulsar fuera.
+- Resaltado de la sección visible al hacer scroll.
+- Sin scroll horizontal a 375 px ni a 1440 px.
+- La precarga apunta al mismo archivo de fuente que usa el CSS.
 
 ## Siguiente paso
 
-1. El propietario hace el commit de la Fase 2.
-2. Planificar la Fase 3 (layout, navegación y tema) y pedir aprobación.
+1. El propietario hace el commit de la Fase 3.
+2. Planificar la Fase 4 (secciones). Necesita el contenido del propietario (checklist en `docs/plan.md`) y las decisiones ADR-004, ADR-012 y ADR-013.
 
 ## Decisiones abiertas
 
@@ -32,4 +40,4 @@ Detalle en `docs/decisiones.md`.
 
 ## Bloqueos
 
-- Contenido del propietario (ver la checklist de contenido en `docs/plan.md`). No bloquea hasta la Fase 4.
+- Contenido del propietario (checklist de contenido en `docs/plan.md`). Ahora bloquea la Fase 4.

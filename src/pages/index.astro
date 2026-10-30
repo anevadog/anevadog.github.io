@@ -1,16 +1,48 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import { profile } from "../data/profile";
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Portafolio</title>
-  </head>
-  <body class="grid min-h-dvh place-items-center">
-    <!-- Página provisional de la Fase 1; se sustituye en las Fases 3 y 4. -->
-    <h1 class="text-2xl font-semibold">Portafolio en construcción</h1>
-  </body>
-</html>
+<BaseLayout
+  title={`${profile.name} · ${profile.role}`}
+  description={profile.description}
+>
+  <Header />
+  <!-- Secciones provisionales para probar la navegación; su contenido llega en la Fase 4. -->
+  <main id="contenido" tabindex="-1" class="flex-1 focus:outline-none">
+    <section
+      id="inicio"
+      class="mx-auto flex min-h-[calc(100dvh-4rem)] max-w-6xl flex-col justify-center gap-4 px-4 sm:px-6"
+    >
+      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+        {profile.name}
+      </h1>
+      <p class="text-lg text-text-muted">{profile.role}</p>
+    </section>
+
+    <section
+      id="proyectos"
+      aria-labelledby="proyectos-titulo"
+      class="mx-auto min-h-dvh max-w-6xl px-4 py-24 sm:px-6"
+    >
+      <h2 id="proyectos-titulo" class="text-3xl font-semibold tracking-tight">
+        Proyectos
+      </h2>
+      <p class="mt-2 text-text-muted">Sección provisional (Fase 4).</p>
+    </section>
+
+    <section
+      id="cv"
+      aria-labelledby="cv-titulo"
+      class="mx-auto min-h-dvh max-w-6xl px-4 py-24 sm:px-6"
+    >
+      <h2 id="cv-titulo" class="text-3xl font-semibold tracking-tight">
+        Currículum
+      </h2>
+      <p class="mt-2 text-text-muted">Sección provisional (Fase 4).</p>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

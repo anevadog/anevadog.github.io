@@ -103,6 +103,14 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 **Decisión:** atributo `data-theme="light|dark"` en `<html>`. Un script en línea en `<head>` aplica el tema antes del primer pintado: primero `localStorage.theme` y, si no existe, `prefers-color-scheme`. Los tokens de color se redefinen bajo cada `data-theme`.
 
+**Selector (Fase 3):**
+
+- Dos estados, claro y oscuro. La alternativa de tres estados, con «sistema» como opción explícita, se descartó por ser menos directa para quien visita la página.
+- Mientras no haya una elección guardada, el tema sigue los cambios del sistema.
+- El botón expone su estado con `aria-pressed` (pulsado = tema oscuro).
+- `theme-color` se sincroniza con `--color-bg`.
+- Implementación: script en línea en `src/layouts/BaseLayout.astro`, lógica en `src/scripts/theme.ts` y botón en `src/components/layout/ThemeToggle.astro`.
+
 **Consecuencias:** sin parpadeo de tema (R-06); el selector solo cambia el atributo y lo guarda.
 
 ## ADR-009 — Documentación mínima

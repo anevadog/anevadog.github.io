@@ -32,21 +32,23 @@ Autorizada por el propietario el 2026-10-30.
 - [x] Componentes UI base: `Button`, `Card`, `Tag`
 - [x] Página interna de muestra `src/pages/muestra.astro`, revisada a 375 px y 1440 px
 
-## Fase 3 — Layout, navegación y tema `[ ]`
+## Fase 3 — Layout, navegación y tema `[x]`
 
-- [ ] `BaseLayout` con metadatos SEO y Open Graph (RNF-05)
-- [ ] Script de tema en línea sin parpadeo + `ThemeToggle` (RF-07, ADR-008)
-- [ ] `Header` con navegación y menú móvil accesible (RF-02)
-- [ ] `Footer` con enlaces (RF-08)
-- [ ] Favicon e imagen OG
+- [x] `BaseLayout` con metadatos SEO y Open Graph (RNF-05), precarga de la fuente latina y enlace «Saltar al contenido»
+- [x] Script de tema en línea sin parpadeo + `ThemeToggle` (RF-07, ADR-008)
+- [x] `Header` con navegación, menú móvil accesible y resaltado de la sección visible (RF-02)
+- [x] `Footer` con enlaces desde `src/data/profile.ts` (RF-08; enlaces pendientes de ADR-013)
+- [x] Favicon (`public/favicon.svg`); la imagen OG pasa a la Fase 4
 
 ## Fase 4 — Secciones `[ ]`
 
+- [ ] Sustituir el contenido de ejemplo de `src/data/profile.ts` (checklist de contenido)
 - [ ] Hero (RF-01)
 - [ ] Modelo de datos y sección de proyectos (RF-03, RF-04)
 - [ ] Sección de currículum según ADR-004 (RF-05, RF-06)
 - [ ] Página 404 (RF-09)
 - [ ] Sección «Sobre mí / Stack», si se aprueba (RF-10, ADR-013)
+- [ ] Imagen Open Graph `public/og-image.png` y etiquetas `og:image` (RNF-05)
 
 ## Fase 5 — Pulido visual `[ ]`
 
@@ -69,7 +71,7 @@ Requiere autorización. Bloqueada por ADR-003.
 
 - [ ] Eliminar la página interna `src/pages/muestra.astro`
 - [ ] Configurar el hosting elegido
-- [ ] Configurar `site` (y `base` si aplica) en `astro.config.mjs`
+- [ ] Configurar `site` (y `base` si aplica) en `astro.config.mjs`, y añadir `og:url` y la URL canónica
 - [ ] Verificación final en producción
 
 ## Checklist de contenido (lo aporta el propietario)
