@@ -1,0 +1,31 @@
+# Dependencias
+node_modules/
+
+# Salida de compilación y caché de Astro
+dist/
+.astro/
+
+# Variables de entorno (no se usan actualmente; ver ADR-009)
+.env
+.env.*
+
+# Logs
+npm-debug.log*
+*.log
+
+# Informes de herramientas
+.lighthouseci/
+coverage/
+
+# Datos personales originales (nunca se publican; ver ADR-012)
+privado/
+
+# Editores
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,160 @@
+# Registro de decisiones
+
+Estados:
+
+- **Aceptada**: decisión firme.
+- **Propuesta**: recomendación aplicada por defecto, pendiente de confirmación del propietario.
+- **Pendiente**: sin decidir; no se implementa nada que dependa de ella.
+- **Sustituida**: reemplazada por otro ADR (se indica cuál).
+
+Formato: contexto → decisión → alternativas descartadas → consecuencias.
+
+---
+
+## ADR-001 — Astro como framework
+
+**Estado:** Aceptada · **Fecha:** 2026-10-30
+
+**Contexto:** sitio de contenido estático, de una página, donde el rendimiento y el SEO son prioritarios.
+
+**Decisión:** Astro con TypeScript estricto, generación estática. Versión instalada en la Fase 1: `astro` 7.4.4. TypeScript se fija en 6.x (6.0.3) porque `@astrojs/check` 0.9.12 aún no admite TypeScript 7.
+
+**Alternativas descartadas:**
+
+- Next.js: SSR y runtime de React innecesarios; más JavaScript en el cliente.
+- Vite + React (SPA): renderizado en cliente, peor LCP y SEO.
+- HTML/CSS/JS sin framework: sin componentes ni optimización de imágenes integrada.
+- SvelteKit: válido, pero menos orientado a sitios de contenido que Astro.
+
+**Consecuencias:** HTML estático con JavaScript mínimo; imágenes optimizadas con `astro:assets`.
+
+## ADR-002 — Tailwind CSS v4 con tokens CSS
+
+**Estado:** Aceptada · **Fecha:** 2026-10-30
+
+**Contexto:** se necesita iterar rápido sobre un diseño muy cuidado y mantener la coherencia entre dos temas.
+
+**Decisión:** Tailwind CSS v4 con los tokens definidos como CSS custom properties (`@theme`), redefinidos por tema. Integrado mediante el plugin de Vite `@tailwindcss/vite` (versiones instaladas: `tailwindcss` y `@tailwindcss/vite` 4.3.3).
+
+**Alternativa descartada:** CSS sin framework (custom properties + estilos con alcance de componente de Astro).
+
+**Consecuencias:** los componentes usan solo tokens semánticos.
+
+## ADR-003 — Hosting en GitHub Pages, sin dominio propio
+
+**Estado:** Propuesta · **Fecha:** 2026-10-30
+
+**Contexto:** sitio estático; prioridad a opciones gratuitas.
+
+**Decisión propuesta:** GitHub Pages, publicado mediante GitHub Actions. Sin dominio propio por ahora.
+
+**Alternativas:** Netlify, Vercel o Cloudflare Pages (gratuitos para este caso; requieren otra cuenta). Dominio propio: unos 10–15 €/año, solo con aprobación.
+
+**Consecuencias:** si el repositorio no se llama `<usuario>.github.io`, el sitio se sirve bajo una subruta y hay que configurar `base` en Astro. Requiere un remoto en GitHub (no existe todavía) y autorización para crearlo y desplegar.
+
+## ADR-004 — CV en HTML + descarga en PDF
+
+**Estado:** Propuesta · **Fecha:** 2026-10-30
+
+**Contexto:** Chrome Android no muestra PDF dentro de un `iframe` y Safari iOS lo hace de forma limitada (R-03).
+
+**Decisión propuesta:** opción A. Sección de CV maquetada en HTML a partir de datos, más un botón de descarga del PDF.
+
+**Alternativas:**
+
+- B: PDF incrustado en escritorio y solo enlace en móvil. Más sencillo, pero la experiencia en móvil es peor.
+- C: visor con PDF.js. Funciona en todas partes, pero añade unos 300 KB cargados bajo demanda.
+
+**Consecuencias:** el contenido del CV existe dos veces (datos HTML y PDF); hay que mantenerlos sincronizados. A cambio, mejora la accesibilidad, el SEO y la experiencia en móvil.
+
+## ADR-005 — Sitio solo en español
+
+**Estado:** Propuesta · **Fecha:** 2026-10-30
+
+**Decisión propuesta:** contenido solo en español.
+
+**Alternativas:** solo inglés (más alcance internacional), o bilingüe (amplía el alcance: rutas por idioma, selector y contenido duplicado).
+
+**Consecuencias:** `lang="es"` en el HTML. Añadir otro idioma más adelante requiere un ADR nuevo.
+
+## ADR-006 — Fuentes autoalojadas
+
+**Estado:** Aceptada · **Fecha:** 2026-10-30
+
+**Decisión:** fuentes variables autoalojadas con Fontsource; sin peticiones a Google Fonts u otros CDN.
+
+**Motivo:** privacidad (RNF-06, RGPD) y rendimiento.
+
+**Consecuencias:** la familia concreta se decide en ADR-011.
+
+## ADR-007 — Sin librerías de animación ni framework de UI
+
+**Estado:** Aceptada · **Fecha:** 2026-10-30
+
+**Decisión:** microinteracciones y transiciones con CSS, IntersectionObserver y View Transitions API (mejora progresiva). Scripts nativos en TypeScript.
+
+**Alternativas descartadas:** GSAP, Framer Motion, React/Svelte para interactividad. Su peso no se justifica para este alcance.
+
+**Consecuencias:** se reconsidera solo si se aprueba una animación concreta que CSS no pueda resolver.
+
+## ADR-008 — Mecanismo de tema claro/oscuro
+
+**Estado:** Aceptada · **Fecha:** 2026-10-30
+
+**Decisión:** atributo `data-theme="light|dark"` en `<html>`. Un script en línea en `<head>` aplica el tema antes del primer pintado: primero `localStorage.theme` y, si no existe, `prefers-color-scheme`. Los tokens de color se redefinen bajo cada `data-theme`.
+
+**Consecuencias:** sin parpadeo de tema (R-06); el selector solo cambia el atributo y lo guarda.
+
+## ADR-009 — Documentación mínima
+
+**Estado:** Aceptada · **Fecha:** 2026-10-30
+
+**Decisión:** no crear `docs/arquitectura.md` (la sección 5 de `AGENTS.md` basta para un sitio estático de una página) ni `.env.example` (no hay variables de entorno ni secretos).
+
+**Consecuencias:** se crearán si aparecen integraciones o una arquitectura con varias piezas.
+
+## ADR-010 — Nombre de la rama principal
+
+**Estado:** Pendiente
+
+**Contexto:** el repositorio está en `master`; las convenciones habituales de GitHub usan `main`.
+
+**Opciones:** mantener `master`, o renombrarla a `main` antes del primer commit.
+
+**Nota:** el propietario aprobó la decisión el 2026-10-30, pero falta aclarar cuál de las dos opciones elige. Si renombra, lo hace él mismo antes del primer commit (`AGENTS.md` §9).
+
+## ADR-011 — Identidad visual: paleta y tipografía
+
+**Estado:** Pendiente (se resuelve en la Fase 2)
+
+**Contexto:** el propietario no ha indicado preferencias de color ni de tipografía.
+
+**Plan:** proponer 2–3 direcciones visuales (paleta para ambos temas + combinación tipográfica: display, texto y monoespaciada), con el contraste verificado, para que el propietario elija.
+
+## ADR-012 — Datos personales publicados
+
+**Estado:** Pendiente
+
+**Contexto:** el CV y el sitio son públicos e indexables (R-01).
+
+**Recomendación:** no publicar dirección ni teléfono; email sí, mediante enlace `mailto:`; eliminar los metadatos del PDF. El original completo va en `privado/`, que está excluida de Git.
+
+**A decidir por el propietario:** qué datos aparecen en la web y en el PDF público.
+
+## ADR-013 — Contenido adicional
+
+**Estado:** Pendiente
+
+**A decidir:**
+
+- Si se incluye la sección «Sobre mí / Stack» (RF-10).
+- Si se incluye foto.
+- Qué enlaces de contacto y perfiles aparecen (RF-08).
+
+## ADR-014 — Convención de commits
+
+**Estado:** Propuesta · **Fecha:** 2026-10-30
+
+**Decisión propuesta:** Conventional Commits en español (`feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `chore:`).
+
+**Consecuencias:** historial legible. Ningún commit se hace sin autorización (`AGENTS.md` §9).
