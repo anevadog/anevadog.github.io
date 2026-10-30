@@ -4,16 +4,23 @@
  * sombra está en un pseudoelemento cuya opacidad se anima, y el
  * desplazamiento es un `transform` (RNF-04).
  */
-interface Props {
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
   as?: "div" | "article" | "li";
   interactive?: boolean;
-  class?: string;
 }
 
-const { as: Tag = "div", interactive = false, class: className } = Astro.props;
+const {
+  as: Tag = "div",
+  interactive = false,
+  class: className,
+  ...attrs
+} = Astro.props;
 ---
 
 <Tag
+  {...attrs}
   class:list={[
     "relative rounded-xl border border-border bg-surface p-5",
     interactive && [

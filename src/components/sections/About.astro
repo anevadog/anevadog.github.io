@@ -24,7 +24,10 @@ const stats = [
     />
 
     <div class="flex flex-col gap-8">
-      <div class="flex flex-col gap-4 text-lg text-pretty text-text-muted">
+      <div
+        data-reveal
+        class="flex flex-col gap-4 text-lg text-pretty text-text-muted"
+      >
         <p>
           Llevo <strong class="font-medium text-text">8 años</strong>{" "}
           resolviendo problemas técnicos: primero como técnico de Service Desk y
@@ -48,7 +51,7 @@ const stats = [
 
       <ul class="grid gap-4 sm:grid-cols-3">
         {stats.map((stat) => (
-          <Card as="li" class="flex flex-col gap-1">
+          <Card as="li" data-reveal class="flex flex-col gap-1">
             <span class="bg-(image:--gradient-brand) bg-clip-text text-3xl font-bold tracking-tight text-transparent">
               {stat.value}
             </span>

@@ -93,7 +93,7 @@ Sitio estático generado en tiempo de compilación. Sin servidor, base de datos 
 - **CV** público en `public/cv/`, servido tal cual para la descarga.
 - **Tema**: atributo `data-theme="light|dark"` en `<html>`. Un script en línea en `<head>` lo aplica antes del primer pintado leyendo `localStorage` (clave `theme`) o, si no existe, `prefers-color-scheme`. Los colores son tokens CSS que se redefinen por tema (ADR-008).
 - **Layout**: `src/layouts/BaseLayout.astro` define los metadatos, la precarga de la fuente latina, el script de tema en línea y el enlace «Saltar al contenido». `Header` y `Footer` están en `src/components/layout/`.
-- **JavaScript en cliente** mínimo: tema (`src/scripts/theme.ts`), menú móvil y resaltado de la sección visible (en `Header.astro`), y aparición de elementos al hacer scroll (Fase 5). Todo con IntersectionObserver y APIs nativas.
+- **JavaScript en cliente** mínimo: tema (`src/scripts/theme.ts`), menú móvil, borde de la cabecera al hacer scroll y resaltado de la sección visible (en `Header.astro`), y aparición de elementos al hacer scroll (`src/scripts/reveal.ts`, cargado desde `BaseLayout`). Todo con IntersectionObserver y APIs nativas.
 
 ### Estructura de carpetas
 
@@ -167,6 +167,12 @@ Componentes base en `src/components/ui/`: `Button` (`primary`, `secondary`, `gho
 
 - Microinteracciones (hover, foco, pulsación): 150–250 ms.
 - Aparición de secciones: ≤ 600 ms, una sola vez por elemento.
+- Implementación en `src/styles/global.css` (bloque «Movimiento»), dentro de `@media screen and (prefers-reduced-motion: no-preference)`:
+  - **Hero**: atributo `data-hero-item` con `--hero-index`. El `<h1>` usa `data-hero-item="rise"` (solo desplazamiento) para no retrasar el LCP.
+  - **Aparición al hacer scroll**: atributo `data-reveal`, gestionado por `src/scripts/reveal.ts`. Solo oculta si puede mostrar después.
+  - Las animaciones usan `animation-fill-mode: backwards`, para no bloquear el hover al terminar.
+  - Menú móvil con `@starting-style`; cambio de tema con View Transitions.
+- Curva estándar: `ease-soft` (`--ease-soft`).
 - Solo `transform` y `opacity`. Los cambios de color o sombra al pasar el ratón se hacen animando la opacidad de una capa superpuesta o de un pseudoelemento (ver `Button` y `Card`). Con `prefers-reduced-motion: reduce`, se eliminan desplazamientos y se mantienen cambios de opacidad instantáneos o muy breves.
 
 ### Breakpoints

@@ -55,12 +55,12 @@ Implementada el 2026-10-30. Queda abierta hasta recibir el contenido pendiente (
 - [ ] Sustituir las tarjetas «en desarrollo» por los proyectos reales
 - [ ] Añadir el PDF del CV a `public/cv/` y definir `resume.pdf`
 
-## Fase 5 — Pulido visual `[ ]`
+## Fase 5 — Pulido visual `[x]`
 
-- [ ] Microinteracciones en botones, tarjetas y navegación (RNF-04)
-- [ ] Aparición de secciones con IntersectionObserver
-- [ ] View Transitions como mejora progresiva
-- [ ] Soporte de `prefers-reduced-motion`
+- [x] Microinteracciones (RNF-04): flecha de los botones, zoom del motivo de la tarjeta de proyecto y borde de la cabecera solo tras hacer scroll
+- [x] Aparición de secciones con IntersectionObserver (`src/scripts/reveal.ts`) y entrada escalonada del Hero
+- [x] View Transitions como mejora progresiva (cambio de tema) y fundido del menú móvil
+- [x] Soporte de `prefers-reduced-motion`; las animaciones solo se aplican en pantalla, no al imprimir
 
 ## Fase 6 — Validación `[ ]`
 

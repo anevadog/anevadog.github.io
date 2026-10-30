@@ -28,7 +28,10 @@ import { publicPath } from "../utils/paths";
     </p>
     <Button href={publicPath("")}>
       Volver al inicio
-      <Icon name="arrowRight" class="size-4" />
+      <Icon
+        name="arrowRight"
+        class="size-4 transition-transform duration-200 ease-soft group-hover:translate-x-0.5 motion-reduce:group-hover:translate-x-0"
+      />
     </Button>
   </main>
 </BaseLayout>

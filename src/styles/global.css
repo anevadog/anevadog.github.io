@@ -32,6 +32,8 @@
 
   --shadow-elevated:
     0 1px 2px rgb(10 10 10 / 0.04), 0 8px 24px rgb(10 10 10 / 0.06);
+
+  --ease-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 /*
@@ -109,5 +111,76 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+/*
+ * Movimiento (Fase 5, RNF-04): solo `opacity` y `translate`, y solo si el
+ * usuario no pide reducir el movimiento. Las animaciones usan `backwards`
+ * para no fijar valores al terminar (el hover de las tarjetas sigue
+ * funcionando).
+ */
+@keyframes enter-up {
+  from {
+    opacity: 0;
+    translate: 0 1rem;
+  }
+}
+
+@keyframes rise {
+  from {
+    translate: 0 0.75rem;
+  }
+}
+
+/* Solo en pantalla: al imprimir, todo el contenido debe verse. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  /* Entrada del Hero. El <h1> solo se desplaza, sin opacidad, para no
+     retrasar el LCP. */
+  [data-hero-item] {
+    animation: enter-up 700ms var(--ease-soft) backwards;
+    animation-delay: calc(var(--hero-index, 0) * 90ms + 100ms);
+  }
+
+  [data-hero-item="rise"] {
+    animation-name: rise;
+  }
+
+  /* Aparición al hacer scroll: `reveal.ts` marca `data-reveal-ready` en
+     <html> y `data-revealed` en cada elemento al entrar en pantalla. Sin
+     JavaScript, nada se oculta. */
+  [data-reveal-ready] [data-reveal]:not([data-revealed]) {
+    opacity: 0;
+  }
+
+  [data-revealed] {
+    animation: enter-up 600ms var(--ease-soft) backwards;
+    animation-delay: calc(var(--reveal-index, 0) * 80ms);
+  }
+
+  /* Menú móvil: fundido al abrir y cerrar (sin soporte, cambio instantáneo). */
+  [data-menu-panel] {
+    transition:
+      opacity 200ms var(--ease-soft),
+      translate 200ms var(--ease-soft),
+      display 200ms allow-discrete;
+  }
+
+  [data-menu-panel][hidden] {
+    opacity: 0;
+    translate: 0 -0.5rem;
+  }
+
+  @starting-style {
+    [data-menu-panel] {
+      opacity: 0;
+      translate: 0 -0.5rem;
+    }
+  }
+
+  /* Cambio de tema con View Transitions (`theme.ts`): fundido de la página. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 250ms;
   }
 }

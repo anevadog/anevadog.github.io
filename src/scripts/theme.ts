@@ -8,6 +8,7 @@ type Theme = "light" | "dark";
 const STORAGE_KEY = "theme";
 const root = document.documentElement;
 const systemDark = matchMedia("(prefers-color-scheme: dark)");
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
 function currentTheme(): Theme {
   return root.dataset.theme === "dark" ? "dark" : "light";
@@ -51,8 +52,18 @@ export function initTheme() {
   for (const button of document.querySelectorAll("[data-theme-toggle]")) {
     button.addEventListener("click", () => {
       const next = currentTheme() === "dark" ? "light" : "dark";
-      apply(next);
-      store(next);
+      const change = () => {
+        apply(next);
+        store(next);
+      };
+
+      // Fundido con View Transitions (Fase 5); sin soporte o con movimiento
+      // reducido, el cambio es instantáneo.
+      if (document.startViewTransition && !reduceMotion.matches) {
+        document.startViewTransition(change);
+      } else {
+        change();
+      }
     });
   }
 
