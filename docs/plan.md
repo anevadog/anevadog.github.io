@@ -74,7 +74,7 @@ Realizada el 2026-10-30 sobre el build de producción (`astro preview`).
 - [x] Sin peticiones a terceros: la primera carga son 67,6 KiB (HTML, CSS y dos fuentes), todo servido desde el propio sitio (RNF-06)
 - [x] Correcciones: un bloque con el foco se muestra aunque no se haya revelado aún, y el puesto del Hero usa `text-balance` (en móvil, «DAM» quedaba sola)
 
-## Fase 7 — Despliegue `[ ]`
+## Fase 7 — Despliegue `[x]`
 
 Aprobada el 2026-10-30: GitHub Pages en `anevadog.github.io`, publicando con el contenido pendiente (ADR-003).
 
@@ -88,7 +88,7 @@ Aprobada el 2026-10-30: GitHub Pages en `anevadog.github.io`, publicando con el 
   - Una ruta inexistente devuelve 404 con la página propia y `noindex`; `/muestra` ya no existe
   - CSS, fuente, favicon e imagen OG responden 200 con el tipo correcto
   - Lighthouse 13.6.0 sobre la URL publicada: 100 en todas las categorías, en móvil (LCP 1,2 s, CLS 0, TBT 0 ms) y escritorio (LCP 0,3 s). Informes `.lighthouseci/produccion-*`
-- [ ] Pruebas en dispositivos reales (propietario, T-3). En Safari iOS y Chrome Android:
+- [x] Pruebas en dispositivos reales (propietario, T-3), todo correcto el 2026-10-30. En Safari iOS y Chrome Android:
   - La página carga sin scroll horizontal y el Hero se ve completo sin hacer scroll
   - El menú móvil abre, cierra y lleva a cada sección
   - El selector de tema cambia y recuerda la elección al recargar, sin parpadeo
