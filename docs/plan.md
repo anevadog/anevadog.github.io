@@ -82,9 +82,19 @@ Aprobada el 2026-10-30: GitHub Pages en `anevadog.github.io`, publicando con el 
 - [x] Eliminar la página interna `src/pages/muestra.astro`
 - [x] Configurar el hosting: workflow `.github/workflows/deploy.yml` (acciones oficiales de GitHub, Node desde `.nvmrc`, `npm run build`)
 - [x] Configurar `site` en `astro.config.mjs` (sin `base`), y añadir `og:url`, `og:image` con dimensiones y texto alternativo, Twitter `summary_large_image` y la URL canónica. La 404 lleva `noindex` y no tiene URL canónica
-- [ ] Crear el repositorio remoto, primer `push` y activar Pages con «GitHub Actions» (propietario, P-6)
-- [ ] Verificación final en producción
-- [ ] Pruebas en dispositivos reales: Safari iOS y Chrome Android (lista de comprobaciones para el propietario)
+- [x] Crear el repositorio remoto, primer `push` y activar Pages con «GitHub Actions» (propietario, P-6). Commit `88627b0`; el workflow terminó correctamente
+- [x] Verificación en producción (2026-10-30, `https://anevadog.github.io/`):
+  - El HTML publicado es idéntico al de `dist/` local; HTTP redirige a HTTPS
+  - Una ruta inexistente devuelve 404 con la página propia y `noindex`; `/muestra` ya no existe
+  - CSS, fuente, favicon e imagen OG responden 200 con el tipo correcto
+  - Lighthouse 13.6.0 sobre la URL publicada: 100 en todas las categorías, en móvil (LCP 1,2 s, CLS 0, TBT 0 ms) y escritorio (LCP 0,3 s). Informes `.lighthouseci/produccion-*`
+- [ ] Pruebas en dispositivos reales (propietario, T-3). En Safari iOS y Chrome Android:
+  - La página carga sin scroll horizontal y el Hero se ve completo sin hacer scroll
+  - El menú móvil abre, cierra y lleva a cada sección
+  - El selector de tema cambia y recuerda la elección al recargar, sin parpadeo
+  - Los enlaces de GitHub, LinkedIn y email funcionan
+  - Una URL inventada muestra la 404 y su botón vuelve al inicio
+  - Al compartir el enlace (WhatsApp, LinkedIn…) aparece la imagen y el título
 
 ## Checklist de contenido (lo aporta el propietario)
 

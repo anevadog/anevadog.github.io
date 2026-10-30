@@ -7,23 +7,24 @@ Estado actual y punto de continuación. Se actualiza al final de cada sesión.
 ## Estado actual
 
 - Fases 0 a 3, 5 y 6 completadas. Fase 4 implementada (commit `528d4f7`), pero abierta a la espera de contenido del propietario.
-- Fase 7 implementada en local: falta que el propietario cree el repositorio, haga el commit y el primer `push` y active Pages.
+- Fase 7: **web publicada en https://anevadog.github.io/** y verificada (Lighthouse 100 en producción). Solo queda abierta por las pruebas en dispositivos reales (T-3).
 - Stack: Astro 7.4.4, Tailwind CSS 4.3.3, TypeScript 6.0.3 (estricto), Prettier 3.9.10, `@astrojs/check`, Geist / Geist Mono (`@fontsource-variable/*` 5.3.0).
 - Página completa con datos reales:
   - Hero, «Sobre mí», Proyectos y CV en HTML.
   - Página 404 e imagen Open Graph.
   - Sistema de diseño B «Grafito esmeralda», tema claro/oscuro sin parpadeo y menú móvil accesible.
-- Git: rama `main` con commits hasta la Fase 6 (`c5883d9`); la Fase 7 está pendiente de commit. Sin remoto todavía (destino: `github.com/anevadog/anevadog.github.io`, público). El propietario ejecuta `git add`, `commit` y `push`; el agente le indica cuándo y le da los comandos (`AGENTS.md` §9).
+- Git: rama `main` con commits hasta la Fase 6 (`c5883d9`); Fase 7 en `88627b0`, subida a `origin` (`github.com/anevadog/anevadog.github.io`, público). Cada `push` a `main` vuelve a desplegar. El propietario ejecuta `git add`, `commit` y `push`; el agente le indica cuándo y le da los comandos (`AGENTS.md` §9).
 
 ## Último paso realizado
 
-Fase 7 (despliegue) implementada en local, con el contenido pendiente tal como está (aprobado por el propietario):
+Fase 7 (despliegue), publicada con el contenido pendiente tal como está (aprobado por el propietario). Verificación en producción en `docs/plan.md`:
 
 - Auditoría previa a hacer público el repositorio: sin teléfonos, secretos ni `privado/` en el historial; imagen OG sin metadatos.
 - Eliminada `src/pages/muestra.astro`.
 - `site: "https://anevadog.github.io"` (sin `base`); URL canónica, `og:url`, `og:image` absoluta con dimensiones y texto alternativo, y Twitter `summary_large_image`. La 404 lleva `noindex`.
 - Workflow `.github/workflows/deploy.yml` con acciones oficiales de GitHub (checkout v7, setup-node v7, configure-pages v6, upload-pages-artifact v5, deploy-pages v5).
 - `npm run build` y `format:check` correctos; metadatos revisados en `dist/`.
+- En producción: HTML idéntico al build local, 404 correcta, recursos 200, HTTP → HTTPS y Lighthouse 100 en móvil y escritorio.
 
 La Fase 6 (validación) está detallada en `docs/plan.md`.
 
@@ -35,9 +36,9 @@ Notas para futuras pruebas:
 
 ## Siguiente paso
 
-1. El propietario crea el repositorio público `anevadog.github.io`, hace el commit de la Fase 7 y el primer `push`, y activa Pages con «GitHub Actions» (P-6).
-2. Verificación en producción: carga, 404, metadatos OG, Lighthouse sobre la URL publicada y comprobaciones en Safari iOS y Chrome Android (T-3).
-3. Contenido pendiente (P-1 a P-4): cada `push` a `main` vuelve a publicar.
+1. El propietario hace el commit de la documentación de la verificación.
+2. Pruebas en Safari iOS y Chrome Android con la lista de `docs/plan.md`, Fase 7 (T-3).
+3. Contenido pendiente (P-1 a P-4): cada `push` a `main` vuelve a publicar. Tras cada cambio, comprueba que el workflow «Desplegar en GitHub Pages» termina bien.
 
 ## Pendientes
 
@@ -55,7 +56,7 @@ Notas para futuras pruebas:
 | #   | Pendiente                                                                                                                                                                    | Referencia | Bloquea |
 | --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ------- |
 | P-5 | ~~Confirmar el hosting (propuesta: GitHub Pages, sin dominio propio) y el nombre del repositorio en GitHub, que define si hace falta `base`~~ Decidido: `anevadog.github.io` | ADR-003    | —       |
-| P-6 | Crear el repositorio remoto en GitHub, conectarlo y hacer el primer `push`. Lo hace el propietario con los comandos que le dé el agente                                      | ADR-003    | Fase 7  |
+| P-6 | ~~Crear el repositorio remoto en GitHub, conectarlo y hacer el primer `push`. Lo hace el propietario con los comandos que le dé el agente~~ Hecho                            | ADR-003    | —       |
 | P-7 | Confirmar el sitio solo en español (propuesta)                                                                                                                               | ADR-005    | —       |
 | P-8 | Confirmar Conventional Commits en español (propuesta, ya en uso)                                                                                                             | ADR-014    | —       |
 | P-9 | Decidir si se incluye foto                                                                                                                                                   | ADR-013    | —       |
