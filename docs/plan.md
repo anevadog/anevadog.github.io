@@ -62,13 +62,17 @@ Implementada el 2026-10-30. Queda abierta hasta recibir el contenido pendiente (
 - [x] View Transitions como mejora progresiva (cambio de tema) y fundido del menú móvil
 - [x] Soporte de `prefers-reduced-motion`; las animaciones solo se aplican en pantalla, no al imprimir
 
-## Fase 6 — Validación `[ ]`
+## Fase 6 — Validación `[x]`
 
-- [ ] Responsive en 320, 375, 768, 1024 y 1440 px (RNF-01)
-- [ ] Lighthouse móvil: Performance ≥ 95, Accessibility ≥ 95 (RNF-02, RNF-03)
-- [ ] Navegación completa por teclado y revisión con lector de pantalla
-- [ ] Pruebas en navegadores objetivo (RNF-07)
-- [ ] Comprobar que no hay peticiones a terceros al cargar (RNF-06)
+Realizada el 2026-10-30 sobre el build de producción (`astro preview`).
+
+- [x] Responsive en 320, 375, 768, 1024 y 1440 px, sin scroll horizontal (RNF-01)
+- [x] Lighthouse 13.6.0 (RNF-02, RNF-03): 100 en Performance, Accessibility, Best Practices y SEO, en móvil y escritorio. Móvil: LCP 1,2 s, CLS 0, TBT 0 ms. Informes en `.lighthouseci/` (ignorada por Git)
+- [x] Navegación por teclado completa (15 elementos, orden lógico, foco visible) y revisión estructural: títulos sin saltos, zonas de página, `lang`, nombres accesibles e ids únicos. Revisión con lector de pantalla real: pendiente (propietario, opcional)
+- [x] Movimiento reducido real: Chrome con `--force-prefers-reduced-motion` y Firefox con `ui.prefersReducedMotion`. No se oculta nada y no hay animaciones (RNF-04)
+- [x] Firefox (Gecko) a 1440 y 375 px: diseño, fuentes y gradiente correctos (RNF-07). Safari iOS y Chrome Android pasan a la Fase 7, con la web publicada
+- [x] Sin peticiones a terceros: la primera carga son 67,6 KiB (HTML, CSS y dos fuentes), todo servido desde el propio sitio (RNF-06)
+- [x] Correcciones: un bloque con el foco se muestra aunque no se haya revelado aún, y el puesto del Hero usa `text-balance` (en móvil, «DAM» quedaba sola)
 
 ## Fase 7 — Despliegue `[ ]`
 
@@ -78,6 +82,7 @@ Requiere autorización. Bloqueada por ADR-003.
 - [ ] Configurar el hosting elegido
 - [ ] Configurar `site` (y `base` si aplica) en `astro.config.mjs`, y añadir `og:url`, `og:image` (con `public/og-image.png`) y la URL canónica
 - [ ] Verificación final en producción
+- [ ] Pruebas en dispositivos reales: Safari iOS y Chrome Android (lista de comprobaciones para el propietario)
 
 ## Checklist de contenido (lo aporta el propietario)
 

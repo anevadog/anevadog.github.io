@@ -148,8 +148,9 @@
 
   /* Aparición al hacer scroll: `reveal.ts` marca `data-reveal-ready` en
      <html> y `data-revealed` en cada elemento al entrar en pantalla. Sin
-     JavaScript, nada se oculta. */
-  [data-reveal-ready] [data-reveal]:not([data-revealed]) {
+     JavaScript, nada se oculta. Un bloque que recibe el foco con el teclado
+     se muestra al instante. */
+  [data-reveal-ready] [data-reveal]:not([data-revealed], :focus-within) {
     opacity: 0;
   }
 
