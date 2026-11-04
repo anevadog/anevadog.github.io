@@ -1,5 +1,5 @@
 import type { ImageMetadata } from "astro";
-import cocinaImage from "../assets/projects/cocina.jpg";
+import cocinaImage from "../assets/projects/cocina.png";
 import softhardImage from "../assets/projects/softhard-al.png";
 import { profile } from "./profile";
 
@@ -88,9 +88,10 @@ export const projects: Project[] = [
       "Caddy",
     ],
     repo: { url: "https://github.com/anevadog/cocina" },
+    demoUrl: "https://anevadog.github.io/cocina/",
     image: cocinaImage,
     imageAlt:
-      "Panel de demostración de Cocina en tema oscuro: totales de productos y lotes en riesgo, coste real por ración de cada receta y lotes que caducan antes",
+      "Recorrido visual de Cocina, paso «Receta»: la versión 1 de la salsa de tomate conserva su coste congelado de 1,29 € por ración y la versión 2 sube a 1,49 € tras encarecerse el tomate",
   },
   { status: "upcoming" },
 ];

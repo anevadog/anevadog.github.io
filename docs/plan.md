@@ -51,8 +51,8 @@ Implementada el 2026-10-30. Queda abierta hasta recibir el contenido pendiente (
 - [x] Sección de currículum en HTML según ADR-004 (RF-05). La descarga (RF-06) se activa al definir `resume.pdf`
 - [x] Página 404 (RF-09)
 - [x] Imagen Open Graph `public/og-image.png`. La etiqueta `og:image` se añade en la Fase 7
-- [x] Capturas de SoftHard A&L y Cocina en `src/assets/projects/`, recortadas a 16:9 y sin metadatos (2026-11-04)
-- [~] Sustituir las tarjetas «en desarrollo» por los proyectos reales: SoftHard A&L (repositorio ya público y demo) y Cocina hechos el 2026-11-04; falta el tercero. La tarjeta «en desarrollo» que queda ocupa la fila completa
+- [x] Capturas de SoftHard A&L y Cocina en `src/assets/projects/`, recortadas a 16:9 y sin metadatos (2026-11-04). La de Cocina se sustituye el mismo día por una escena de su recorrido visual
+- [~] Sustituir las tarjetas «en desarrollo» por los proyectos reales: SoftHard A&L (repositorio ya público y demo) y Cocina (repositorio y recorrido visual como demo) hechos el 2026-11-04; falta el tercero. La tarjeta «en desarrollo» que queda ocupa la fila completa
 - [ ] Añadir el PDF del CV a `public/cv/` y definir `resume.pdf`
 
 ## Fase 5 — Pulido visual `[x]`

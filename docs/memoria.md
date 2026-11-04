@@ -10,17 +10,23 @@ Estado actual y punto de continuación. Se actualiza al final de cada sesión.
 - Fase 7 completada: **web publicada en https://anevadog.github.io/**, verificada en producción (Lighthouse 100) y revisada por el propietario en móvil.
 - Stack: Astro 7.4.4, Tailwind CSS 4.3.3, TypeScript 6.0.3 (estricto), Prettier 3.9.10, `@astrojs/check`, Geist / Geist Mono (`@fontsource-variable/*` 5.3.0).
 - Página completa con datos reales:
-  - Hero, «Sobre mí», Proyectos (SoftHard A&L y Cocina con repositorio público y captura; una tarjeta «en desarrollo») y CV en HTML.
+  - Hero, «Sobre mí», Proyectos (SoftHard A&L y Cocina con repositorio público, demo y captura; una tarjeta «en desarrollo») y CV en HTML.
   - Página 404 e imagen Open Graph.
   - Sistema de diseño B «Grafito esmeralda», tema claro/oscuro sin parpadeo y menú móvil accesible.
 - Git: rama `main` con commits hasta la Fase 7 (`d26b3b9`, documentación de la verificación en `8d08f5e`), subida a `origin` (`github.com/anevadog/anevadog.github.io`, público). Cada `push` a `main` vuelve a desplegar. El propietario ejecuta `git add`, `commit` y `push`; el agente le indica cuándo y le da los comandos (`AGENTS.md` §9).
 
 ## Último paso realizado
 
-2026-11-04 — Fase 4, proyectos (sin commit todavía):
+2026-11-04 — Fase 4, recorrido visual de Cocina (sin commit todavía):
+
+- El repositorio `cocina` publica un recorrido animado de seis escenas con datos reales de su API (su ADR-048) en https://anevadog.github.io/cocina/. Cocina pasa a tener `demoUrl` con esa URL (botón «Ver demo»).
+- La captura de Cocina pasa a ser la escena «Receta» del recorrido (`docs/img/recorrido-receta.png` del repositorio: coste congelado de la v1 a 1,29 € frente a la v2 a 1,49 €), que ilustra el primer punto clave de la tarjeta. Recortada a 16:9 con `sharp` (1164 × 655, sin la fila de botones) y sin metadatos: `src/assets/projects/cocina.png`, que sustituye a `cocina.jpg`. `imageAlt` actualizado.
+- `npm run build` y `format:check` correctos; revisado en 1440 px (tema claro) y 375 px (tema oscuro), sin scroll horizontal y con el enlace con `rel="noopener noreferrer"`.
+
+Anterior: 2026-11-04 — Fase 4, proyectos (commit `da86741`):
 
 - Los repositorios `softhard-al` y `cocina` ya son públicos. SoftHard A&L pasa a `repo: { url }` con `demoUrl` `https://softhard-al.vercel.app` (responde 200).
-- Cocina (API REST en Java 25 + Spring Boot sobre PostgreSQL 18) entra como proyecto 2, redactado a partir de su README. No tiene demo desplegada: su `docs/demo-publica.md` indica que falta el VPS y el dominio.
+- Cocina (API REST en Java 25 + Spring Boot sobre PostgreSQL 18) entra como proyecto 2, redactado a partir de su README. La API en vivo sigue sin desplegar (falta el VPS y el dominio, según su `docs/demo-publica.md`).
 - Capturas descargadas de los propios repositorios (`docs/capturas/landing.png` y `docs/img/demo-panel.jpeg`), recortadas a 16:9 desde arriba con `sharp` (ya presente como dependencia de Astro) y sin metadatos: `src/assets/projects/softhard-al.png` y `cocina.jpg`.
 - Con un número impar de tarjetas «en desarrollo», la última ocupa la fila completa (prop `wide` de `ProjectCard`).
 - `npm run build` (0 errores, 0 avisos) y `format:check` correctos; revisado en 1440 px (tema claro) y 375 px (tema oscuro), sin scroll horizontal y con los enlaces externos con `rel="noopener noreferrer"`.
@@ -46,7 +52,7 @@ Notas para futuras pruebas:
 
 ## Siguiente paso
 
-1. El propietario hace el commit y el `push` de los proyectos, y comprueba el workflow de despliegue.
+1. El propietario hace el commit y el `push` del recorrido de Cocina, y comprueba el workflow de despliegue.
 2. Contenido pendiente (P-2 tercer proyecto, P-3 y P-4) para cerrar la Fase 4: cada `push` a `main` vuelve a publicar. Tras cada cambio, comprueba que el workflow «Desplegar en GitHub Pages» termina bien.
 
 ## Pendientes
