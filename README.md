@@ -1,19 +1,41 @@
 # Portafolio web personal
 
-Portafolio personal de una sola página: presentación, proyectos destacados y currículum consultable y descargable en PDF. Diseño responsive con tema claro y oscuro.
+Portafolio de una sola página con presentación, «Sobre mí», proyectos destacados y currículum. Diseño responsive con tema claro y oscuro.
 
-> **Estado:** proyecto inicializado; las secciones todavía no están implementadas. Consulta [`docs/memoria.md`](docs/memoria.md).
+**Web publicada:** https://anevadog.github.io/
+
+## Características
+
+- Sitio estático sin backend, sin cookies y sin peticiones a terceros (fuentes autoalojadas).
+- Tema claro y oscuro que respeta la preferencia del sistema, recuerda la elección y no parpadea al cargar.
+- Accesibilidad WCAG 2.2 AA: contraste verificado en ambos temas, navegación por teclado y `prefers-reduced-motion`.
+- Lighthouse 100 en móvil y escritorio.
+- JavaScript mínimo: scripts nativos en TypeScript, sin framework de UI.
+- Contenido separado del marcado: los proyectos y el CV son datos tipados.
 
 ## Stack
 
-[Astro](https://astro.build) + TypeScript + Tailwind CSS v4. Sitio estático, sin backend. Detalle y justificación en [`AGENTS.md`](AGENTS.md) y [`docs/decisiones.md`](docs/decisiones.md).
+[Astro](https://astro.build) + TypeScript estricto + Tailwind CSS v4, con fuentes Geist autoalojadas (Fontsource). Las decisiones técnicas, con sus alternativas, están en [`docs/decisiones.md`](docs/decisiones.md).
 
-## Requisitos
+## Estructura
 
-- Node.js 24 (ver `.nvmrc`)
-- npm
+```
+src/
+├── assets/projects/   capturas de los proyectos (optimizadas con astro:assets)
+├── components/
+│   ├── layout/        cabecera, pie y selector de tema
+│   ├── sections/      Hero, Sobre mí, Proyectos y CV
+│   └── ui/            botones, tarjetas, etiquetas e iconos
+├── data/              perfil, proyectos y currículum
+├── layouts/           metadatos, SEO y script de tema
+├── pages/             index y 404
+├── scripts/           tema y aparición al hacer scroll
+└── styles/            tokens de diseño y temas
+```
 
 ## Puesta en marcha
+
+Requisitos: Node.js 24 (ver `.nvmrc`) y npm.
 
 ```bash
 npm install
@@ -39,23 +61,15 @@ Otros scripts: `npm run check` (solo comprobación de tipos), `npm run format` y
 
 ## Contenido
 
-| Qué                             | Dónde                                            |
-| ------------------------------- | ------------------------------------------------ |
-| Perfil, textos y enlaces        | `src/data/profile.ts`                            |
-| Proyectos destacados            | `src/data/projects.ts`                           |
-| Capturas de proyectos           | `src/assets/projects/`                           |
-| CV público (PDF)                | `public/cv/` (nombre del archivo: **PENDIENTE**) |
-| CV original con datos completos | `privado/` (ignorada por Git, nunca se publica)  |
-
-Antes de publicar el CV, revisa qué datos personales incluye y elimina sus metadatos (ver ADR-012 en `docs/decisiones.md`).
+| Qué                                 | Dónde                                     |
+| ----------------------------------- | ----------------------------------------- |
+| Perfil, enlaces y descripción SEO   | `src/data/profile.ts`                     |
+| Proyectos destacados                | `src/data/projects.ts`                    |
+| Capturas de proyectos (16:9)        | `src/assets/projects/`                    |
+| Currículum (experiencia, formación) | `src/data/resume.ts`                      |
+| Textos de cada sección              | `src/components/sections/`                |
+| CV público en PDF                   | `public/cv/` y campo `pdf` de `resume.ts` |
 
 ## Despliegue
 
-**PENDIENTE** (ADR-003). Propuesta: GitHub Pages.
-
-## Documentación
-
-- [`AGENTS.md`](AGENTS.md): contexto, requisitos, arquitectura, convenciones y reglas.
-- [`docs/plan.md`](docs/plan.md): fases y tareas.
-- [`docs/memoria.md`](docs/memoria.md): estado actual.
-- [`docs/decisiones.md`](docs/decisiones.md): decisiones técnicas.
+GitHub Pages mediante GitHub Actions ([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)). Cada `push` a `main` compila y publica el sitio.

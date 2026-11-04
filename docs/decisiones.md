@@ -117,7 +117,7 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 **Estado:** Aceptada · **Fecha:** 2026-10-30
 
-**Decisión:** no crear `docs/arquitectura.md` (la sección 5 de `AGENTS.md` basta para un sitio estático de una página) ni `.env.example` (no hay variables de entorno ni secretos).
+**Decisión:** no crear `docs/arquitectura.md` (el `README.md` basta para un sitio estático de una página) ni `.env.example` (no hay variables de entorno ni secretos).
 
 **Consecuencias:** se crearán si aparecen integraciones o una arquitectura con varias piezas.
 
@@ -127,7 +127,7 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 **Contexto:** el repositorio se creó en `master`; las convenciones habituales de GitHub usan `main`.
 
-**Decisión:** la rama principal es `main`. El propietario la renombra con `git branch -m main` antes del primer commit (`AGENTS.md` §9).
+**Decisión:** la rama principal es `main`. El propietario la renombra con `git branch -m main` antes del primer commit.
 
 **Alternativa descartada:** mantener `master`.
 
@@ -185,7 +185,7 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 **Decisión propuesta:** Conventional Commits en español (`feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `chore:`).
 
-**Consecuencias:** historial legible. Ningún commit se hace sin autorización (`AGENTS.md` §9).
+**Consecuencias:** historial legible. Ningún commit se hace sin autorización del propietario.
 
 ## ADR-015 — Cifras y hechos del CV
 

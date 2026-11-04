@@ -8,7 +8,7 @@
 /*
  * Tokens de diseño: dirección B «Grafito esmeralda» (ADR-011).
  * Se eliminan los colores por defecto de Tailwind para que los componentes
- * solo puedan usar tokens semánticos (AGENTS.md §6).
+ * solo puedan usar tokens semánticos.
  * Valores del tema claro; el tema oscuro los redefine más abajo.
  */
 @theme {
@@ -101,7 +101,7 @@
     color: var(--color-accent-contrast);
   }
 
-  /* AGENTS.md §7: sin desplazamientos con movimiento reducido. */
+  /* Sin desplazamientos con movimiento reducido. */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
