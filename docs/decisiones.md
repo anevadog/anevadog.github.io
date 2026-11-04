@@ -193,4 +193,4 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 **Decisión:** el portafolio y el CV solo incluyen cifras y hechos que el propietario confirma y puede defender en una entrevista. No se inventan datos de relleno.
 
-**Cifras confirmadas:** más de 50 clientes en SoftHard A&L (2020–2024); 609 tests unitarios y 106 de integración en la aplicación SoftHard A&L.
+**Cifras confirmadas:** más de 50 clientes en SoftHard A&L (2020–2024); 609 tests unitarios y 106 de integración en la aplicación SoftHard A&L; 247 tests automáticos en la API Cocina (cifra tomada del README público del repositorio, 2026-11-04).

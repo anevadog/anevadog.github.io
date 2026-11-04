@@ -51,8 +51,8 @@ Implementada el 2026-10-30. Queda abierta hasta recibir el contenido pendiente (
 - [x] Sección de currículum en HTML según ADR-004 (RF-05). La descarga (RF-06) se activa al definir `resume.pdf`
 - [x] Página 404 (RF-09)
 - [x] Imagen Open Graph `public/og-image.png`. La etiqueta `og:image` se añade en la Fase 7
-- [ ] Capturas de SoftHard A&L en `src/assets/projects/` (campo `image` del proyecto)
-- [ ] Sustituir las tarjetas «en desarrollo» por los proyectos reales
+- [x] Capturas de SoftHard A&L y Cocina en `src/assets/projects/`, recortadas a 16:9 y sin metadatos (2026-11-04)
+- [~] Sustituir las tarjetas «en desarrollo» por los proyectos reales: SoftHard A&L (repositorio ya público y demo) y Cocina hechos el 2026-11-04; falta el tercero. La tarjeta «en desarrollo» que queda ocupa la fila completa
 - [ ] Añadir el PDF del CV a `public/cv/` y definir `resume.pdf`
 
 ## Fase 5 — Pulido visual `[x]`
@@ -102,7 +102,7 @@ Aprobada el 2026-10-30: GitHub Pages en `anevadog.github.io`, publicando con el 
 - [x] Enlaces: LinkedIn, GitHub y email (ADR-013)
 - [x] Contenido del CV (experiencia, competencias, idiomas), revisado el 2026-10-30
 - [x] Formación: CFGS Desarrollo de Aplicaciones Multiplataforma — CEAC · 2025–actualidad
-- [ ] 3 proyectos: 1 de 3 (SoftHard A&L, repositorio privado bajo petición). Faltan capturas de SoftHard y los otros dos proyectos (públicos cuando estén terminados)
+- [ ] 3 proyectos: 2 de 3 (SoftHard A&L y Cocina, ambos con repositorio público). Falta el tercero
 - [ ] CV en PDF (versión pública sin teléfono, ADR-012)
 - [ ] Foto: PENDIENTE (ADR-013)
 

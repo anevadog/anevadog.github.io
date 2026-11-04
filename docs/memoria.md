@@ -2,7 +2,7 @@
 
 Estado actual y punto de continuación. Se actualiza al final de cada sesión.
 
-**Última actualización:** 2026-10-30
+**Última actualización:** 2026-11-04
 
 ## Estado actual
 
@@ -10,14 +10,23 @@ Estado actual y punto de continuación. Se actualiza al final de cada sesión.
 - Fase 7 completada: **web publicada en https://anevadog.github.io/**, verificada en producción (Lighthouse 100) y revisada por el propietario en móvil.
 - Stack: Astro 7.4.4, Tailwind CSS 4.3.3, TypeScript 6.0.3 (estricto), Prettier 3.9.10, `@astrojs/check`, Geist / Geist Mono (`@fontsource-variable/*` 5.3.0).
 - Página completa con datos reales:
-  - Hero, «Sobre mí», Proyectos y CV en HTML.
+  - Hero, «Sobre mí», Proyectos (SoftHard A&L y Cocina con repositorio público y captura; una tarjeta «en desarrollo») y CV en HTML.
   - Página 404 e imagen Open Graph.
   - Sistema de diseño B «Grafito esmeralda», tema claro/oscuro sin parpadeo y menú móvil accesible.
 - Git: rama `main` con commits hasta la Fase 7 (`d26b3b9`, documentación de la verificación en `8d08f5e`), subida a `origin` (`github.com/anevadog/anevadog.github.io`, público). Cada `push` a `main` vuelve a desplegar. El propietario ejecuta `git add`, `commit` y `push`; el agente le indica cuándo y le da los comandos (`AGENTS.md` §9).
 
 ## Último paso realizado
 
-Fase 7 (despliegue), publicada con el contenido pendiente tal como está (aprobado por el propietario). Verificación en producción en `docs/plan.md`:
+2026-11-04 — Fase 4, proyectos (sin commit todavía):
+
+- Los repositorios `softhard-al` y `cocina` ya son públicos. SoftHard A&L pasa a `repo: { url }` con `demoUrl` `https://softhard-al.vercel.app` (responde 200).
+- Cocina (API REST en Java 25 + Spring Boot sobre PostgreSQL 18) entra como proyecto 2, redactado a partir de su README. No tiene demo desplegada: su `docs/demo-publica.md` indica que falta el VPS y el dominio.
+- Capturas descargadas de los propios repositorios (`docs/capturas/landing.png` y `docs/img/demo-panel.jpeg`), recortadas a 16:9 desde arriba con `sharp` (ya presente como dependencia de Astro) y sin metadatos: `src/assets/projects/softhard-al.png` y `cocina.jpg`.
+- Con un número impar de tarjetas «en desarrollo», la última ocupa la fila completa (prop `wide` de `ProjectCard`).
+- `npm run build` (0 errores, 0 avisos) y `format:check` correctos; revisado en 1440 px (tema claro) y 375 px (tema oscuro), sin scroll horizontal y con los enlaces externos con `rel="noopener noreferrer"`.
+- `.claude/launch.json` es configuración local del agente para el preview: no se versiona.
+
+Anterior: Fase 7 (despliegue), publicada con el contenido pendiente tal como está (aprobado por el propietario). Verificación en producción en `docs/plan.md`:
 
 - Auditoría previa a hacer público el repositorio: sin teléfonos, secretos ni `privado/` en el historial; imagen OG sin metadatos.
 - Eliminada `src/pages/muestra.astro`.
@@ -37,8 +46,8 @@ Notas para futuras pruebas:
 
 ## Siguiente paso
 
-1. El propietario hace el commit que cierra la Fase 7.
-2. Contenido pendiente (P-1 a P-4) para cerrar la Fase 4: cada `push` a `main` vuelve a publicar. Tras cada cambio, comprueba que el workflow «Desplegar en GitHub Pages» termina bien.
+1. El propietario hace el commit y el `push` de los proyectos, y comprueba el workflow de despliegue.
+2. Contenido pendiente (P-2 tercer proyecto, P-3 y P-4) para cerrar la Fase 4: cada `push` a `main` vuelve a publicar. Tras cada cambio, comprueba que el workflow «Desplegar en GitHub Pages» termina bien.
 
 ## Pendientes
 
@@ -46,8 +55,8 @@ Notas para futuras pruebas:
 
 | #   | Pendiente                                                                                                                                                                                 | Dónde se usa                                                                     | Bloquea          |
 | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ---------------- |
-| P-1 | 1–2 capturas de SoftHard A&L (PNG o JPG, solo datos ficticios)                                                                                                                            | `src/assets/projects/`, campos `image` e `imageAlt` en `projects.ts`             | Cierre de Fase 4 |
-| P-2 | Proyectos 2 y 3: título, subtítulo, año, descripción, 2–3 puntos clave, tecnologías, URL del repositorio público, demo (opcional) y captura                                               | Sustituyen las tarjetas «en desarrollo» de `projects.ts`                         | Cierre de Fase 4 |
+| P-1 | ~~1–2 capturas de SoftHard A&L (PNG o JPG, solo datos ficticios)~~ Hecho                                                                                                                  | `src/assets/projects/`, campos `image` e `imageAlt` en `projects.ts`             | Cierre de Fase 4 |
+| P-2 | Proyecto 2 hecho (Cocina). Falta el proyecto 3: título, subtítulo, año, descripción, 2–3 puntos clave, tecnologías, URL del repositorio público, demo (opcional) y captura                | Sustituye la tarjeta «en desarrollo» de `projects.ts`                            | Cierre de Fase 4 |
 | P-3 | PDF del CV: versión pública sin teléfono, con el apartado Formación y sin metadatos. Nombre propuesto: `CV-Alexander-Nevado-Garcia.pdf`                                                   | `public/cv/` y campo `pdf` en `resume.ts` (activa el botón de descarga)          | Cierre de Fase 4 |
 | P-4 | Revisar los textos redactados por el agente: frase del Hero, título y párrafos de «Sobre mí», subtítulo de Proyectos, texto de las tarjetas «en desarrollo» y descripción para buscadores | `Hero.astro`, `About.astro`, `Projects.astro`, `ProjectCard.astro`, `profile.ts` | Cierre de Fase 4 |
 

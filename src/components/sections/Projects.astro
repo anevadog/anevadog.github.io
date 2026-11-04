@@ -2,6 +2,11 @@
 import ProjectCard from "./ProjectCard.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 import { projects } from "../../data/projects";
+
+// Si queda un número impar de tarjetas «en desarrollo», la última ocupa la
+// fila completa para no dejar un hueco en la rejilla de dos columnas.
+const upcomingCount = projects.filter((p) => p.status === "upcoming").length;
+const lastIndex = projects.length - 1;
 ---
 
 <section
@@ -19,8 +24,11 @@ import { projects } from "../../data/projects";
     />
 
     <ul class="grid gap-6 md:grid-cols-2">
-      {projects.map((project) => (
-        <ProjectCard project={project} />
+      {projects.map((project, index) => (
+        <ProjectCard
+          project={project}
+          wide={upcomingCount % 2 === 1 && index === lastIndex}
+        />
       ))}
     </ul>
   </div>

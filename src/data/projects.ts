@@ -1,4 +1,6 @@
 import type { ImageMetadata } from "astro";
+import cocinaImage from "../assets/projects/cocina.jpg";
+import softhardImage from "../assets/projects/softhard-al.png";
 import { profile } from "./profile";
 
 export type ProjectRepo = { url: string } | { private: true };
@@ -56,8 +58,39 @@ export const projects: Project[] = [
       "Vitest",
       "GitHub Actions",
     ],
-    repo: { private: true },
+    repo: { url: "https://github.com/anevadog/softhard-al" },
+    demoUrl: "https://softhard-al.vercel.app",
+    image: softhardImage,
+    imageAlt:
+      "Página de inicio de SoftHard A&L: titular del servicio técnico, botones de registro e inicio de sesión y una tarjeta con el seguimiento de una solicitud en reparación",
   },
-  { status: "upcoming" },
+  {
+    status: "published",
+    title: "Cocina",
+    subtitle: "API REST para la gestión de la cocina de un restaurante",
+    year: "2026",
+    description:
+      "API que controla el almacén, el coste real de cada plato y la producción diaria de una cocina profesional: inventario por lotes con caducidades, recetas versionadas con coste por ración, plan de producción, temperaturas, mermas e incidencias. Todos los datos son ficticios.",
+    highlights: [
+      "El coste por ración se congela al publicar cada versión de una receta, de modo que una subida de precio del proveedor no altera el histórico.",
+      "Descuento de stock atómico: con varios cocineros produciendo a la vez, el almacén nunca queda en negativo, y cada operación queda en una auditoría protegida por un trigger.",
+      "247 tests automáticos, con los de integración sobre PostgreSQL real (Testcontainers), y un test de arquitectura que impide saltarse las fronteras entre módulos.",
+    ],
+    tech: [
+      "Java",
+      "Spring Boot",
+      "PostgreSQL",
+      "Flyway",
+      "JWT",
+      "Testcontainers",
+      "Docker",
+      "GitHub Actions",
+      "Caddy",
+    ],
+    repo: { url: "https://github.com/anevadog/cocina" },
+    image: cocinaImage,
+    imageAlt:
+      "Panel de demostración de Cocina en tema oscuro: totales de productos y lotes en riesgo, coste real por ración de cada receta y lotes que caducan antes",
+  },
   { status: "upcoming" },
 ];

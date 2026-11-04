@@ -8,15 +8,20 @@ import { requestAccessHref, type Project } from "../../data/projects";
 
 interface Props {
   project: Project;
+  /** Solo para «en desarrollo»: ocupa las dos columnas de la rejilla. */
+  wide?: boolean;
 }
 
-const { project } = Astro.props;
+const { project, wide = false } = Astro.props;
 ---
 
 {project.status === "upcoming" ? (
   <li
     data-reveal
-    class="flex flex-col items-start gap-3 rounded-xl border border-dashed border-border-strong p-6"
+    class:list={[
+      "flex flex-col items-start gap-3 rounded-xl border border-dashed border-border-strong p-6",
+      wide && "md:col-span-2",
+    ]}
   >
     <span class="inline-flex items-center gap-1.5 font-mono text-xs text-text-muted">
       <Icon name="clock" class="size-4" />
