@@ -1,5 +1,6 @@
 import type { ImageMetadata } from "astro";
 import cocinaImage from "../assets/projects/cocina.png";
+import pendlaImage from "../assets/projects/pendla.png";
 import softhardImage from "../assets/projects/softhard-al.png";
 import { profile } from "./profile";
 
@@ -93,5 +94,32 @@ export const projects: Project[] = [
     imageAlt:
       "Recorrido visual de Cocina, paso «Receta»: la versión 1 de la salsa de tomate conserva su coste congelado de 1,29 € por ración y la versión 2 sube a 1,49 € tras encarecerse el tomate",
   },
-  { status: "upcoming" },
+  {
+    status: "published",
+    title: "Pendla",
+    subtitle: "API REST para seguir mi búsqueda de empleo en Suecia",
+    year: "2026",
+    description:
+      "API que uso en mi propia búsqueda de empleo: busca ofertas reales en la API pública de JobTech (Arbetsförmedlingen) por palabra clave y ciudad, y guarda las candidaturas que me interesan para seguir su estado, desde «guardada» hasta «oferta» o «rechazada».",
+    highlights: [
+      "Integración con una API externa con timeouts y errores controlados: 502 si JobTech falla y 504 si no responde a tiempo, sin reintentos. Los datos de contacto de los anuncios nunca se leen ni se guardan.",
+      "Las transiciones de estado son una regla del dominio: un cambio no permitido devuelve 409 como ProblemDetail (RFC 9457), y si se añade un estado nuevo, el código no compila hasta decidir sus transiciones.",
+      "77 tests que no necesitan base de datos ni red (dominio, servicios, controladores con MockMvc y JobTech simulado), ejecutados en GitHub Actions en cada push, y esquema versionado con Flyway.",
+    ],
+    tech: [
+      "Java",
+      "Spring Boot",
+      "PostgreSQL",
+      "Spring Data JPA",
+      "Flyway",
+      "OpenAPI",
+      "JUnit",
+      "Mockito",
+      "GitHub Actions",
+    ],
+    repo: { url: "https://github.com/anevadog/pendla" },
+    image: pendlaImage,
+    imageAlt:
+      "Swagger UI de Pendla: búsqueda de ofertas de Java en Göteborg con respuesta 200 y tres anuncios reales de JobTech con título, empresa, ciudad y enlace",
+  },
 ];
