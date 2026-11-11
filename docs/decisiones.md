@@ -58,7 +58,9 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 **Contexto:** Chrome Android no muestra PDF dentro de un `iframe` y Safari iOS lo hace de forma limitada (R-03).
 
-**Decisión:** opción A. Sección de CV maquetada en HTML a partir de datos, más un botón de descarga del PDF. El PDF todavía no existe (el propietario lo preparará con los proyectos pendientes de publicar): el botón solo se muestra cuando el archivo está definido en los datos del CV.
+**Decisión:** opción A. Sección de CV maquetada en HTML a partir de datos, más un botón de descarga del PDF. El botón solo se muestra cuando el archivo está definido en los datos del CV.
+
+**Actualización (2026-11-11):** el PDF ya está publicado en `public/cv/CV-Alexander-Nevado-Garcia.pdf`, en su versión clara, que se imprime mejor. Los datos de `resume.ts` se han sincronizado con él.
 
 **Alternativas:**
 
@@ -166,18 +168,18 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 **Decisión:**
 
 - **Se publican:** nombre, ubicación a nivel de ciudad («Dos Hermanas (Sevilla)»), email mediante enlace `mailto:` y perfiles de LinkedIn y GitHub.
-- **No se publica:** el teléfono, ni en la web ni en el PDF público.
-- **PDF público:** se le eliminan los metadatos antes de publicarlo. El original completo va en `privado/`, que está excluida de Git.
+- **Teléfono:** solo en el PDF público (cambio del 2026-11-11, decidido por el propietario; antes no se publicaba en ningún sitio). La web sigue sin mostrarlo.
+- **PDF público:** se le eliminan los metadatos antes de publicarlo. El original y su fuente HTML van en `privado/`, que está excluida de Git.
 
 ## ADR-013 — Contenido adicional
 
-**Estado:** Aceptada (salvo la foto) · **Fecha:** 2026-10-30
+**Estado:** Aceptada · **Fecha:** 2026-10-30 · **Actualizada:** 2026-11-11
 
 **Decisión:**
 
 - Se incluye la sección «Sobre mí» (RF-10), centrada en la transición de soporte IT a desarrollo.
 - Enlaces de contacto y perfiles (RF-08): LinkedIn, GitHub y email.
-- Foto: **PENDIENTE**. Por ahora no se incluye.
+- Foto: se incluye en el PDF del CV (decidido el 2026-11-11). La web no la muestra.
 
 ## ADR-014 — Convención de commits
 
@@ -193,4 +195,4 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 **Decisión:** el portafolio y el CV solo incluyen cifras y hechos que el propietario confirma y puede defender en una entrevista. No se inventan datos de relleno.
 
-**Cifras confirmadas:** más de 50 clientes en SoftHard A&L (2020–2024); 609 tests unitarios y 106 de integración en la aplicación SoftHard A&L; 247 tests automáticos en la API Cocina (cifra tomada del README público del repositorio, 2026-11-04); 77 tests en la API Pendla (cifra tomada de la integración continua del repositorio, 2026-11-10).
+**Cifras confirmadas:** más de 50 clientes en SoftHard A&L (2020–2024); 609 tests unitarios y 106 de integración en la aplicación SoftHard A&L; 247 tests automáticos en la API Cocina (cifra tomada del README público del repositorio, 2026-11-04); 77 tests en la API Pendla (cifra tomada de la integración continua del repositorio, 2026-11-10); Técnico en Sistemas por el SENA (2013–2015), permiso de conducir B con vehículo propio y disponibilidad para viajar y cambiar de ciudad (confirmados por el propietario en su CV, 2026-11-11).

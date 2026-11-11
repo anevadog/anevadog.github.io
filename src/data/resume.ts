@@ -22,10 +22,13 @@ export interface Resume {
   additional: string[];
 }
 
-// Contenido revisado con el propietario el 2026-10-30 (ADR-015).
+// Contenido revisado con el propietario el 2026-10-30 y sincronizado con el
+// PDF el 2026-11-11 (ADR-004, ADR-015).
 export const resume: Resume = {
-  // PENDIENTE: el propietario añadirá el PDF a public/cv/.
-  pdf: undefined,
+  pdf: {
+    file: "CV-Alexander-Nevado-Garcia.pdf",
+    downloadName: "CV-Alexander-Nevado-Garcia.pdf",
+  },
   experience: [
     {
       title: "Fundador y Técnico de Soporte IT",
@@ -59,6 +62,11 @@ export const resume: Resume = {
       organization: "CEAC",
       period: "2025–actualidad",
     },
+    {
+      title: "Técnico en Sistemas",
+      organization: "SENA",
+      period: "2013–2015",
+    },
   ],
   skills: [
     {
@@ -91,21 +99,25 @@ export const resume: Resume = {
       ],
     },
     {
-      name: "Tecnologías usadas en proyecto",
+      name: "Tecnologías usadas en proyectos",
       note: "Con asistencia de IA",
       items: [
+        "Spring Boot",
+        "Spring Data JPA",
+        "PostgreSQL",
+        "Flyway",
+        "JUnit",
+        "Mockito",
         "TypeScript",
         "Next.js",
         "React",
-        "PostgreSQL",
         "Prisma",
         "Docker",
-        "GitHub Actions (CI)",
-        "Vitest",
+        "GitHub Actions",
       ],
     },
     {
-      name: "Herramientas de IA para desarrollo",
+      name: "Herramientas de IA",
       items: ["Claude Code", "OpenCode"],
     },
   ],
@@ -121,6 +133,6 @@ export const resume: Resume = {
   ],
   additional: [
     "Permiso de conducir B y vehículo propio",
-    "Disponibilidad para desplazamientos",
+    "Disponibilidad para viajar y para cambiar de ciudad",
   ],
 };
