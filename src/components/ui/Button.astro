@@ -11,6 +11,8 @@ interface Props {
   download?: boolean | string;
   external?: boolean;
   class?: string;
+  /** Atributos `data-*` para scripts (p. ej. `data-copy`). */
+  [key: `data-${string}`]: string | undefined;
 }
 
 const {
@@ -20,6 +22,7 @@ const {
   download,
   external = false,
   class: className,
+  ...attrs
 } = Astro.props;
 
 const variants = {
@@ -35,7 +38,7 @@ const overlays = {
 };
 
 const classes = [
-  "group relative isolate inline-flex items-center justify-center gap-2 overflow-hidden rounded-lg px-4 py-2.5 text-sm font-medium",
+  "group relative isolate inline-flex items-center justify-center gap-2 overflow-hidden rounded-md px-4 py-2.5 text-sm font-medium",
   "transition-transform duration-150 ease-out active:scale-[0.98] motion-reduce:active:scale-100",
   variants[variant],
   className,
@@ -51,7 +54,7 @@ const linkProps = href
   : { type };
 ---
 
-<Tag class:list={classes} {...linkProps}>
+<Tag class:list={classes} {...linkProps} {...attrs}>
   <span
     aria-hidden="true"
     class:list={[

@@ -135,7 +135,7 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 ## ADR-011 — Identidad visual: paleta y tipografía
 
-**Estado:** Aceptada · **Fecha:** 2026-10-30
+**Estado:** Sustituida por ADR-016 (paleta y fuente de títulos; Geist y Geist Mono se mantienen) · **Fecha:** 2026-10-30
 
 **Contexto:** se propusieron tres direcciones visuales con el contraste verificado: A «Índigo nocturno», B «Grafito esmeralda» y C «Tinta y coral».
 
@@ -196,3 +196,31 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 **Decisión:** el portafolio y el CV solo incluyen cifras y hechos que el propietario confirma y puede defender en una entrevista. No se inventan datos de relleno.
 
 **Cifras confirmadas:** más de 50 clientes en SoftHard A&L (2020–2024); 609 tests unitarios y 106 de integración en la aplicación SoftHard A&L; 247 tests automáticos en la API Cocina (cifra tomada del README público del repositorio, 2026-11-04); 77 tests en la API Pendla (cifra tomada de la integración continua del repositorio, 2026-11-10); Técnico en Sistemas por el SENA (2013–2015), permiso de conducir B con vehículo propio y disponibilidad para viajar y cambiar de ciudad (confirmados por el propietario en su CV, 2026-11-11).
+
+## ADR-016 — Rediseño «Placa base»
+
+**Estado:** Aceptada · **Fecha:** 2026-11-12
+
+**Contexto:** el diseño «Grafito esmeralda» (ADR-011) era correcto pero genérico: rejilla, brillo verde y guiños de terminal son habituales en portafolios de desarrollador, y la historia que distingue al propietario (de reparar equipos a construir software) apenas se veía. El propietario aprobó un prototipo navegable antes de implementar.
+
+**Decisión:** identidad basada en una placa de circuito, por la experiencia del propietario en reparación y microsoldadura.
+
+- **Paleta** (escala completa en `src/styles/global.css`): verde de máscara de soldadura para los fondos, esmeralda (`accent`) para acciones y la etapa de desarrollo, y cobre (`accent-2`) para cifras, fechas de la etapa de soporte y pulsos del circuito. Se elimina `--gradient-brand`.
+
+| Token        | Oscuro    | Claro     |
+| ------------ | --------- | --------- |
+| `bg`         | `#07100D` | `#F1F5F2` |
+| `surface`    | `#0C1814` | `#FFFFFF` |
+| `text`       | `#E8F1EC` | `#0B1913` |
+| `text-muted` | `#9BB1A6` | `#485A51` |
+| `accent`     | `#3DDC97` | `#046A4C` |
+| `accent-2`   | `#ECA35F` | `#A1531A` |
+
+- **Contraste medido (WCAG):** todos los pares de texto ≥ 4,5:1 en ambos temas; el más justo es `accent-2` sobre `bg` en tema claro, con 5,07:1. `border-strong` ≥ 3:1 sobre `bg` y `surface` (mínimo 3,27:1 en tema claro).
+- **Tipografía:** Archivo Variable con eje de anchura (`@fontsource-variable/archivo`, OFL-1.1) solo para títulos y cifras; Geist y Geist Mono se mantienen. Se precarga el subconjunto latino porque el `<h1>` la usa.
+- **Circuito del Hero** (`src/scripts/circuit.ts`): un chip «AN» del que salen pistas a 45° con pulsos, dibujado en `<canvas>`. **Excepción a RNF-04 y ADR-007**, que limitaban el movimiento a `transform` y `opacity` en CSS: el lienzo es decorativo (`aria-hidden`), no usa librerías, se detiene fuera de pantalla y con la pestaña oculta, y con `prefers-reduced-motion` queda estático. El resto de animaciones sigue la regla.
+- **Estructura:** cajetín de datos en el Hero, trayectoria 2013–2026 en «Sobre mí», proyectos como casos de estudio con la cifra de tests destacada (campo `metric` de `projects.ts`; sustituye al tercer punto clave, con el mismo contenido), CV jerarquizado y nueva sección «Contacto» con el email copiable (RF-08). Barra de progreso de lectura en la cabecera.
+
+**Alternativas descartadas:** pulir el diseño anterior sin cambiar de concepto (no resolvía que fuese genérico); una librería de animación o WebGL para el Hero (peso injustificado, ADR-007).
+
+**Consecuencias:** una dependencia nueva (Archivo, unos 90 kB precargados). La imagen Open Graph y el favicon conservan los colores anteriores: **PENDIENTE** de regenerar. Lighthouse debe volver a medirse en producción.

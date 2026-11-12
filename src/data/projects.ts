@@ -13,6 +13,10 @@ export interface PublishedProject {
   year: string;
   description: string;
   highlights: string[];
+  /** Cifra destacada de la tarjeta (ADR-015). */
+  metric: { value: string; label: string };
+  /** Texto de la barra de la ventana que enmarca la captura. */
+  frameLabel: string;
   tech: string[];
   repo: ProjectRepo;
   demoUrl?: string;
@@ -45,8 +49,13 @@ export const projects: Project[] = [
     highlights: [
       "Requisitos y flujo de trabajo definidos a partir de mi experiencia dirigiendo un servicio técnico real, organizados en 5 fases con especificaciones.",
       "Desarrollo dirigido por fases con agentes de IA (Claude Code, OpenCode): revisé y probé cada entrega y gestioné el control de versiones con Git y GitHub.",
-      "609 tests unitarios y 106 de integración, ejecutados en integración continua en cada push.",
     ],
+    metric: {
+      value: "715",
+      label:
+        "tests en integración continua: 609 unitarios y 106 de integración",
+    },
+    frameLabel: "softhard-al.vercel.app",
     tech: [
       "Next.js",
       "React",
@@ -75,8 +84,13 @@ export const projects: Project[] = [
     highlights: [
       "El coste por ración se congela al publicar cada versión de una receta, de modo que una subida de precio del proveedor no altera el histórico.",
       "Descuento de stock atómico: con varios cocineros produciendo a la vez, el almacén nunca queda en negativo, y cada operación queda en una auditoría protegida por un trigger.",
-      "247 tests automáticos, con los de integración sobre PostgreSQL real (Testcontainers), y un test de arquitectura que impide saltarse las fronteras entre módulos.",
     ],
+    metric: {
+      value: "247",
+      label:
+        "tests automáticos, con los de integración sobre PostgreSQL real (Testcontainers)",
+    },
+    frameLabel: "anevadog.github.io/cocina",
     tech: [
       "Java",
       "Spring Boot",
@@ -104,8 +118,13 @@ export const projects: Project[] = [
     highlights: [
       "Integración con una API externa con timeouts y errores controlados: 502 si JobTech falla y 504 si no responde a tiempo, sin reintentos. Los datos de contacto de los anuncios nunca se leen ni se guardan.",
       "Las transiciones de estado son una regla del dominio: un cambio no permitido devuelve 409 como ProblemDetail (RFC 9457), y si se añade un estado nuevo, el código no compila hasta decidir sus transiciones.",
-      "77 tests que no necesitan base de datos ni red (dominio, servicios, controladores con MockMvc y JobTech simulado), ejecutados en GitHub Actions en cada push, y esquema versionado con Flyway.",
     ],
+    metric: {
+      value: "77",
+      label:
+        "tests que no necesitan base de datos ni red, ejecutados en GitHub Actions en cada push",
+    },
+    frameLabel: "pendla · Swagger UI",
     tech: [
       "Java",
       "Spring Boot",

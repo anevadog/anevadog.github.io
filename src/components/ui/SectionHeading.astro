@@ -1,23 +1,33 @@
 ---
-/* Encabezado común de sección: índice y etiqueta en monoespaciada, y título. */
+/*
+ * Encabezado común de sección: etiqueta en monoespaciada precedida de un
+ * anillo (un pad de circuito) y título en la fuente de títulos.
+ */
 interface Props {
   id: string;
-  index: string;
   eyebrow: string;
   title: string;
   description?: string;
 }
 
-const { id, index, eyebrow, title, description } = Astro.props;
+const { id, eyebrow, title, description } = Astro.props;
 ---
 
 <div data-reveal class="flex flex-col gap-3">
-  <p class="font-mono text-sm text-accent">
-    <span class="text-text-muted">{`${index} · `}</span>
+  <p class="flex items-center gap-2.5 font-mono text-xs tracking-widest text-accent uppercase">
+    <span
+      aria-hidden="true"
+      class="size-2.5 rounded-full border-2 border-current"
+    ></span>
     {eyebrow}
   </p>
-  <h2 {id} class="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+  <h2
+    {id}
+    class="font-display text-3xl leading-[1.05] font-bold tracking-tight text-balance [font-stretch:112%] sm:text-4xl lg:text-5xl"
+  >
     {title}
   </h2>
-  {description && <p class="max-w-2xl text-text-muted">{description}</p>}
+  {description && (
+    <p class="max-w-2xl text-lg text-text-muted">{description}</p>
+  )}
 </div>

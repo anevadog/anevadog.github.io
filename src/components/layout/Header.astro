@@ -6,16 +6,23 @@ const navItems = [
   { id: "sobre-mi", label: "Sobre mí" },
   { id: "proyectos", label: "Proyectos" },
   { id: "cv", label: "CV" },
+  { id: "contacto", label: "Contacto" },
 ];
 
 const linkClasses =
-  "relative block rounded-lg px-3 py-2 text-sm text-text-muted hover:text-text aria-[current=true]:text-text after:absolute after:inset-x-3 after:bottom-1 after:h-px after:bg-accent after:opacity-0 after:transition-opacity after:duration-200 aria-[current=true]:after:opacity-100";
+  "relative block rounded-md px-3 py-2 text-sm text-text-muted hover:text-text aria-[current=true]:text-text after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:bg-accent after:opacity-0 after:transition-opacity after:duration-200 aria-[current=true]:after:opacity-100";
 ---
 
 <header
   data-site-header
   class="sticky top-0 z-40 bg-bg/85 backdrop-blur-md after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-border after:opacity-0 after:transition-opacity after:duration-200 data-scrolled:after:opacity-100"
 >
+  <!-- Progreso de lectura: solo `scale` (RNF-04). -->
+  <div
+    data-progress
+    aria-hidden="true"
+    class="absolute inset-x-0 bottom-0 z-10 h-0.5 origin-left scale-x-0 bg-accent"
+  ></div>
   <nav
     aria-label="Principal"
     class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6"
@@ -23,11 +30,15 @@ const linkClasses =
     <a
       href="#inicio"
       aria-label={`${profile.name}, ir al inicio`}
-      class="font-mono text-sm font-medium"
+      class="flex items-center gap-2.5 font-mono text-sm font-medium"
     >
-      <span class="before:text-accent before:content-['~/']">
-        {profile.handle}
+      <span
+        aria-hidden="true"
+        class="grid size-8 place-items-center rounded-sm bg-chip font-display text-xs font-extrabold text-silk inset-ring inset-ring-pad [font-stretch:112%]"
+      >
+        {profile.initials}
       </span>
+      <span class="text-text-muted">{profile.handle}</span>
     </a>
 
     <div class="flex items-center gap-1">
@@ -110,8 +121,14 @@ const linkClasses =
   // Borde inferior solo tras hacer scroll (Fase 5).
   if (header) {
     let ticking = false;
+    const progress = header.querySelector<HTMLElement>("[data-progress]");
     const updateScrolled = () => {
       header.toggleAttribute("data-scrolled", window.scrollY > 8);
+      if (progress) {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+        progress.style.scale = `${ratio} 1`;
+      }
       ticking = false;
     };
     updateScrolled();

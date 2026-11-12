@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import geistLatin from "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url";
+import archivoLatin from "@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url";
 import { profile } from "../data/profile";
 import { publicPath } from "../utils/paths";
 
@@ -33,8 +34,15 @@ const ogImageAlt = `${profile.name}, ${profile.role}`;
       type="font/woff2"
       crossorigin
     />
+    <link
+      rel="preload"
+      href={archivoLatin}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <!-- `theme.ts` ajusta este valor al tema activo. -->
-    <meta name="theme-color" content="#fafafa" />
+    <meta name="theme-color" content="#f1f5f2" />
 
     {noindex ? (
       <meta name="robots" content="noindex" />

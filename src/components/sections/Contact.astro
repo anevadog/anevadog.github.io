@@ -1,0 +1,79 @@
+---
+/* Cierre de la página (RF-08, ADR-016): email copiable y perfiles. */
+import Button from "../ui/Button.astro";
+import Icon from "../ui/Icon.astro";
+import { profile } from "../../data/profile";
+
+const profiles = profile.links.filter((link) => link.href.startsWith("http"));
+---
+
+<section
+  id="contacto"
+  aria-labelledby="contacto-titulo"
+  class="border-t border-border bg-surface"
+>
+  <div
+    data-reveal
+    class="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-24 sm:px-6 lg:py-32"
+  >
+    <p class="flex items-center gap-2.5 font-mono text-xs tracking-widest text-accent uppercase">
+      <span
+        aria-hidden="true"
+        class="size-2.5 rounded-full border-2 border-current"
+      ></span>
+      contacto
+    </p>
+    <h2
+      id="contacto-titulo"
+      class="font-display text-[clamp(2.6rem,10vw,7rem)] leading-[0.95] font-extrabold tracking-[-0.04em] [font-stretch:125%]"
+    >
+      ¿Hablamos<span class="text-accent">?</span>
+    </h2>
+    <p class="max-w-xl text-lg text-pretty text-text-muted">
+      Busco prácticas de desarrollo o un puesto de soporte con proyección
+      técnica. Respondo por email o LinkedIn.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-3 pt-2">
+      <a
+        href={`mailto:${profile.email}`}
+        class="rounded-md border border-dashed border-border-strong px-4 py-2.5 font-mono text-sm font-medium wrap-anywhere sm:text-base"
+      >
+        {profile.email}
+      </a>
+      <Button variant="secondary" data-copy={profile.email}>
+        <Icon name="copy" class="size-4" />
+        <span data-copy-label aria-live="polite">
+          Copiar email
+        </span>
+      </Button>
+      {profiles.map((link) => (
+        <Button variant="secondary" href={link.href} external>
+          <Icon name={link.icon} class="size-4" />
+          {link.label}
+        </Button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>("[data-copy]");
+  const label = button?.querySelector<HTMLElement>("[data-copy-label]");
+
+  if (button && label) {
+    const idle = label.textContent ?? "";
+    let timer = 0;
+
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy ?? "");
+        label.textContent = "Copiado";
+      } catch {
+        label.textContent = "No se pudo copiar";
+      }
+      clearTimeout(timer);
+      timer = window.setTimeout(() => (label.textContent = idle), 1800);
+    });
+  }
+</script>

@@ -15,7 +15,7 @@ Portafolio de una sola página con presentación, «Sobre mí», proyectos desta
 
 ## Stack
 
-[Astro](https://astro.build) + TypeScript estricto + Tailwind CSS v4, con fuentes Geist autoalojadas (Fontsource). Las decisiones técnicas, con sus alternativas, están en [`docs/decisiones.md`](docs/decisiones.md).
+[Astro](https://astro.build) + TypeScript estricto + Tailwind CSS v4, con fuentes Geist y Archivo autoalojadas (Fontsource). Las decisiones técnicas, con sus alternativas, están en [`docs/decisiones.md`](docs/decisiones.md).
 
 ## Estructura
 

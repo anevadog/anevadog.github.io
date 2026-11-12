@@ -3,52 +3,68 @@ import Button from "../ui/Button.astro";
 import Icon from "../ui/Icon.astro";
 import SocialLinks from "../ui/SocialLinks.astro";
 import { profile } from "../../data/profile";
+
+// Cajetín del Hero, como el bloque de datos de un plano técnico (ADR-016).
+// Solo hechos confirmados (ADR-015).
+const facts = [
+  { label: "Ubicación", value: profile.location },
+  { label: "Experiencia", value: "8 años en soporte IT" },
+  { label: "Formación", value: "CFGS DAM · en curso" },
+  {
+    label: "Stack de mis proyectos",
+    value: "Java · Spring Boot · PostgreSQL · Next.js",
+  },
+];
 ---
 
 <section
   id="inicio"
   aria-labelledby="inicio-titulo"
-  class="relative isolate overflow-hidden"
+  class="relative isolate overflow-hidden border-b border-border"
 >
-  <!-- Fondo decorativo: rejilla con desvanecido radial y brillo de marca. -->
-  <div aria-hidden="true" class="absolute inset-0 -z-10">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] mask-[radial-gradient(ellipse_at_top,black,transparent_70%)] bg-size-[3rem_3rem]"></div>
-    <div class="absolute -top-48 left-1/2 size-160 -translate-x-1/2 rounded-full bg-accent opacity-10 blur-3xl"></div>
-  </div>
+  <!-- Fondo decorativo: circuito dibujado por `circuit.ts`. -->
+  <canvas
+    data-circuit
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 -z-10 size-full"
+  ></canvas>
 
-  <div class="mx-auto flex min-h-[calc(100dvh-4rem)] max-w-6xl flex-col justify-center gap-6 px-4 py-20 sm:px-6">
+  <div class="mx-auto flex min-h-[calc(100dvh-4rem)] max-w-6xl flex-col justify-center gap-6 px-4 py-14 sm:px-6">
     <p
       data-hero-item
       style="--hero-index: 0"
-      class="font-mono text-sm text-accent dark:text-accent-2"
+      class="inline-flex items-center gap-2.5 self-start rounded-full border border-border bg-surface px-3 py-1.5 font-mono text-xs tracking-wider text-text-muted uppercase"
     >
-      ~/{profile.handle} $ whoami
+      <span
+        data-ping
+        aria-hidden="true"
+        class="relative size-2 rounded-full bg-accent after:absolute after:inset-0 after:rounded-full after:bg-accent after:opacity-0"
+      ></span>
+      {profile.availability}
     </p>
 
     <h1
       id="inicio-titulo"
       data-hero-item="rise"
       style="--hero-index: 1"
-      class="text-[2.75rem] leading-[1.05] font-bold tracking-tighter sm:text-6xl lg:text-7xl"
+      class="font-display text-[clamp(2.1rem,9.4vw,5.6rem)] leading-[0.98] font-extrabold tracking-[-0.035em] [font-stretch:112%] lg:[font-stretch:125%]"
     >
       {profile.firstName}{" "}
-      <span class="block bg-(image:--gradient-brand) bg-clip-text pb-1 text-transparent">
-        {profile.lastName}
-      </span>
+      <span class="block text-accent">{profile.lastName}</span>
     </h1>
 
-    <div data-hero-item style="--hero-index: 2" class="flex flex-col gap-2">
-      <p class="text-lg font-medium text-balance sm:text-xl">{profile.role}</p>
-      <p class="flex items-center gap-1.5 text-sm text-text-muted">
-        <Icon name="mapPin" class="size-4" />
-        {profile.location}
-      </p>
-    </div>
+    <p
+      data-hero-item
+      style="--hero-index: 2"
+      class="text-lg font-medium text-balance sm:text-xl"
+    >
+      {profile.role}
+    </p>
 
     <p
       data-hero-item
       style="--hero-index: 3"
-      class="max-w-2xl text-lg text-pretty text-text-muted"
+      class="max-w-xl text-lg text-pretty text-text-muted"
     >
       {profile.tagline}
     </p>
@@ -70,5 +86,27 @@ import { profile } from "../../data/profile";
       </Button>
       <SocialLinks />
     </div>
+
+    <dl
+      data-hero-item
+      style="--hero-index: 5"
+      class="mt-4 grid grid-cols-2 overflow-hidden rounded-md border border-border-strong bg-surface/90 backdrop-blur-sm lg:mt-8 lg:grid-cols-[1fr_1fr_1fr_1.5fr]"
+    >
+      {facts.map((fact) => (
+        <div class="-mt-px -ml-px flex min-w-0 flex-col gap-1 border-t border-l border-border px-4 py-3.5">
+          <dt class="font-mono text-xs tracking-wider text-text-muted uppercase">
+            {fact.label}
+          </dt>
+          <dd class="text-sm leading-snug font-medium">{fact.value}</dd>
+        </div>
+      ))}
+    </dl>
   </div>
 </section>
+
+<script>
+  import { initCircuit } from "../../scripts/circuit";
+
+  const canvas = document.querySelector<HTMLCanvasElement>("[data-circuit]");
+  if (canvas) initCircuit(canvas);
+</script>

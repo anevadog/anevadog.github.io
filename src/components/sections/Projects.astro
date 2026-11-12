@@ -3,32 +3,31 @@ import ProjectCard from "./ProjectCard.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 import { projects } from "../../data/projects";
 
-// Si queda un número impar de tarjetas «en desarrollo», la última ocupa la
-// fila completa para no dejar un hueco en la rejilla de dos columnas.
-const upcomingCount = projects.filter((p) => p.status === "upcoming").length;
-const lastIndex = projects.length - 1;
+// Los proyectos publicados alternan el lado de la captura y llevan un
+// designador de componente (U1, U2…), como los chips de una placa (ADR-016).
+let published = 0;
+const cards = projects.map((project) => ({
+  project,
+  position: project.status === "published" ? ++published : 0,
+}));
 ---
 
 <section
   id="proyectos"
   aria-labelledby="proyectos-titulo"
-  class="border-t border-border"
+  class="border-y border-border bg-surface"
 >
-  <div class="mx-auto flex max-w-6xl flex-col gap-12 px-4 py-24 sm:px-6">
+  <div class="mx-auto flex max-w-6xl flex-col gap-14 px-4 py-24 sm:px-6 lg:gap-20 lg:py-28">
     <SectionHeading
       id="proyectos-titulo"
-      index="02"
       eyebrow="proyectos"
       title="Proyectos destacados"
       description="Lo que construyo para aprender y para resolver problemas reales."
     />
 
-    <ul class="grid gap-6 md:grid-cols-2">
-      {projects.map((project, index) => (
-        <ProjectCard
-          project={project}
-          wide={upcomingCount % 2 === 1 && index === lastIndex}
-        />
+    <ul class="flex flex-col gap-20 lg:gap-28">
+      {cards.map(({ project, position }) => (
+        <ProjectCard {project} {position} />
       ))}
     </ul>
   </div>

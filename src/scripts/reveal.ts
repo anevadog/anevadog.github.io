@@ -4,6 +4,21 @@
  * reducir el movimiento. Los elementos que entran a la vez se escalonan.
  */
 const MAX_STAGGER = 5;
+const COUNT_DURATION = 1100;
+
+/** Cuenta de 0 al valor de `data-count`; el HTML ya contiene el valor final. */
+function countUp(element: HTMLElement) {
+  const target = Number(element.dataset.count);
+  const prefix = element.dataset.countPrefix ?? "";
+  const start = performance.now();
+  const step = (now: number) => {
+    const progress = Math.min(1, (now - start) / COUNT_DURATION);
+    const eased = 1 - (1 - progress) ** 3;
+    element.textContent = prefix + Math.round(target * eased);
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
 
 const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -22,6 +37,11 @@ if (elements.length > 0 && !reduceMotion && "IntersectionObserver" in window) {
           String(Math.min(index++, MAX_STAGGER)),
         );
         element.dataset.revealed = "";
+        for (const counter of element.querySelectorAll<HTMLElement>(
+          "[data-count]",
+        )) {
+          countUp(counter);
+        }
         observer.unobserve(element);
       }
     },

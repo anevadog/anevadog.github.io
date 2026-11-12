@@ -10,10 +10,14 @@ export interface Profile {
   name: string;
   firstName: string;
   lastName: string;
+  /** Iniciales del distintivo tipo chip de la cabecera. */
+  initials: string;
   /** Nombre corto para la cabecera (`~/handle`). */
   handle: string;
   role: string;
   location: string;
+  /** Aviso de disponibilidad del Hero. */
+  availability: string;
   email: string;
   tagline: string;
   /** Descripción para buscadores y redes sociales. */
@@ -28,9 +32,11 @@ export const profile: Profile = {
   name: "Alexander Nevado García",
   firstName: "Alexander",
   lastName: "Nevado García",
+  initials: "AN",
   handle: "alexander",
   role: "Técnico de Soporte IT · Estudiante de DAM",
   location: "Dos Hermanas (Sevilla)",
+  availability: "Busco prácticas de desarrollo",
   email,
   tagline:
     "8 años resolviendo problemas técnicos en soporte IT. Ahora los resuelvo construyendo software.",
