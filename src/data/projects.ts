@@ -120,9 +120,9 @@ export const projects: Project[] = [
       "Las transiciones de estado son una regla del dominio: un cambio no permitido devuelve 409 como ProblemDetail (RFC 9457), y si se añade un estado nuevo, el código no compila hasta decidir sus transiciones.",
     ],
     metric: {
-      value: "77",
+      value: "130",
       label:
-        "tests que no necesitan base de datos ni red, ejecutados en GitHub Actions en cada push",
+        "tests en GitHub Actions en cada push: 117 sin base de datos ni red y 13 contra PostgreSQL real (Testcontainers)",
     },
     frameLabel: "pendla · Swagger UI",
     tech: [
@@ -131,6 +131,8 @@ export const projects: Project[] = [
       "PostgreSQL",
       "Spring Data JPA",
       "Flyway",
+      "JWT",
+      "Testcontainers",
       "OpenAPI",
       "JUnit",
       "Mockito",
