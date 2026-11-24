@@ -195,7 +195,7 @@ Formato: contexto → decisión → alternativas descartadas → consecuencias.
 
 **Decisión:** el portafolio y el CV solo incluyen cifras y hechos que el propietario confirma y puede defender en una entrevista. No se inventan datos de relleno.
 
-**Cifras confirmadas:** más de 50 clientes en SoftHard A&L (2020–2024); 609 tests unitarios y 106 de integración en la aplicación SoftHard A&L; 247 tests automáticos en la API Cocina (cifra tomada del README público del repositorio, 2026-11-04); 77 tests en la API Pendla (cifra tomada de la integración continua del repositorio, 2026-11-10); Técnico en Sistemas por el SENA (2013–2015), permiso de conducir B con vehículo propio y disponibilidad para viajar y cambiar de ciudad (confirmados por el propietario en su CV, 2026-11-11).
+**Cifras confirmadas:** más de 50 clientes en SoftHard A&L (2020–2024); 609 tests unitarios y 106 de integración en la aplicación SoftHard A&L; 247 tests automáticos en la API Cocina (cifra tomada del README público del repositorio, 2026-11-04); 130 tests en la API Pendla, 117 sin base de datos ni red y 13 contra PostgreSQL real (cifra tomada de la integración continua del repositorio, 2026-11-16; sustituye a los 77 del 2026-11-10); Técnico en Sistemas por el SENA (2013–2015), permiso de conducir B con vehículo propio y disponibilidad para viajar y cambiar de ciudad (confirmados por el propietario en su CV, 2026-11-11).
 
 ## ADR-016 — Rediseño «Placa base»
 
