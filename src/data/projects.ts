@@ -41,6 +41,40 @@ export function requestAccessHref(project: PublishedProject): string {
 export const projects: Project[] = [
   {
     status: "published",
+    title: "Cocina",
+    subtitle: "API REST para la gestión de la cocina de un restaurante",
+    year: "2026",
+    description:
+      "API que controla el almacén, el coste real de cada plato y la producción diaria de una cocina profesional: inventario por lotes con caducidades, recetas versionadas con coste por ración, plan de producción, temperaturas, mermas e incidencias. Todos los datos son ficticios.",
+    highlights: [
+      "El coste por ración se congela al publicar cada versión de una receta, de modo que una subida de precio del proveedor no altera el histórico.",
+      "Descuento de stock atómico: con varios cocineros produciendo a la vez, el almacén nunca queda en negativo, y cada operación queda en una auditoría protegida por un trigger.",
+    ],
+    metric: {
+      value: "247",
+      label:
+        "tests automáticos, con los de integración sobre PostgreSQL real (Testcontainers)",
+    },
+    frameLabel: "anevadog.github.io/cocina",
+    tech: [
+      "Java",
+      "Spring Boot",
+      "PostgreSQL",
+      "Flyway",
+      "JWT",
+      "Testcontainers",
+      "Docker",
+      "GitHub Actions",
+      "Caddy",
+    ],
+    repo: { url: "https://github.com/anevadog/cocina" },
+    demoUrl: "https://anevadog.github.io/cocina/",
+    image: cocinaImage,
+    imageAlt:
+      "Recorrido visual de Cocina, paso «Receta»: la versión 1 de la salsa de tomate conserva su coste congelado de 1,29 € por ración y la versión 2 sube a 1,49 € tras encarecerse el tomate",
+  },
+  {
+    status: "published",
     title: "SoftHard A&L",
     subtitle: "Aplicación web de gestión de un taller de reparación",
     year: "2026",
@@ -73,40 +107,6 @@ export const projects: Project[] = [
     image: softhardImage,
     imageAlt:
       "Página de inicio de SoftHard A&L: titular del servicio técnico, botones de registro e inicio de sesión y una tarjeta con el seguimiento de una solicitud en reparación",
-  },
-  {
-    status: "published",
-    title: "Cocina",
-    subtitle: "API REST para la gestión de la cocina de un restaurante",
-    year: "2026",
-    description:
-      "API que controla el almacén, el coste real de cada plato y la producción diaria de una cocina profesional: inventario por lotes con caducidades, recetas versionadas con coste por ración, plan de producción, temperaturas, mermas e incidencias. Todos los datos son ficticios.",
-    highlights: [
-      "El coste por ración se congela al publicar cada versión de una receta, de modo que una subida de precio del proveedor no altera el histórico.",
-      "Descuento de stock atómico: con varios cocineros produciendo a la vez, el almacén nunca queda en negativo, y cada operación queda en una auditoría protegida por un trigger.",
-    ],
-    metric: {
-      value: "247",
-      label:
-        "tests automáticos, con los de integración sobre PostgreSQL real (Testcontainers)",
-    },
-    frameLabel: "anevadog.github.io/cocina",
-    tech: [
-      "Java",
-      "Spring Boot",
-      "PostgreSQL",
-      "Flyway",
-      "JWT",
-      "Testcontainers",
-      "Docker",
-      "GitHub Actions",
-      "Caddy",
-    ],
-    repo: { url: "https://github.com/anevadog/cocina" },
-    demoUrl: "https://anevadog.github.io/cocina/",
-    image: cocinaImage,
-    imageAlt:
-      "Recorrido visual de Cocina, paso «Receta»: la versión 1 de la salsa de tomate conserva su coste congelado de 1,29 € por ración y la versión 2 sube a 1,49 € tras encarecerse el tomate",
   },
   {
     status: "published",
